@@ -1,0 +1,27 @@
+/* --- Admin Layout Styles (adx-) --- */
+
+/* Ensures the entire page wrapper takes up the viewport height */
+.adx-page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 62px; /* Space for the fixed header */
+    padding-bottom: 60px; /* Space for the fixed footer navigation */
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Main Content Wrapper - Takes up remaining vertical space */
+.adx-content-wrapper {
+    flex-grow: 1; /* Allows content area to fill vertical space */
+    padding: 0; /* Dashboard already applies inner padding */
+    box-sizing: border-box;
+}
+
+/* Adjustments for fixed header/footer responsiveness */
+@media (max-width: 768px) {
+    /* Header height adjustment on mobile based on 'adh-header' CSS */
+    .adx-page-container {
+        padding-top: 100px; 
+    }
+}

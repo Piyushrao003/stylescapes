@@ -1,7 +1,8 @@
 // D:\stylescapes\frontend\src\App.js
 
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// *** IMPORTANT: Import 'Navigate' for the redirect route ***
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; 
 import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
 import Auth from './pages/Auth';
@@ -10,11 +11,11 @@ import CollectionPage from './pages/CollectionPage';
 import ProductDetail from './pages/ProductDetail'; 
 import CartPage from './pages/CartPage'; 
 import CheckoutPage from './pages/CheckoutPage'; 
-// NEW: Import the functional pages
 import ProfilePage from './pages/ProfilePage';
 import OrdersPage from './pages/OrderPage';
-// CRITICAL NEW IMPORT for Search Page
 import SearchPage from './pages/SearchPage'; 
+// NEW: Import the AdminPage component
+import AdminPage from './pages/AdminPage'; 
 
 import { getUserProfile } from './api/authApi'; 
 
@@ -97,6 +98,23 @@ function App() {
                         path="/orders" 
                         element={<OrdersPage user={user} />} 
                     />
+                    
+                    {/* ----------------------------------------------------------- */}
+                    {/* --- ADMIN ROUTE FIX: Use two routes for path-based navigation --- */}
+                    
+                    {/* 1. Base Admin Route: Redirects /admin to /admin/dashboard */}
+                    <Route 
+                        path="/admin" 
+                        element={<Navigate to="/admin/dashboard" replace />} 
+                    />
+
+                    {/* 2. Dynamic Admin Route: Matches /admin/dashboard, /admin/users, etc. */}
+                    {/* The :section parameter is read by the updated AdminPage.js */}
+                    <Route 
+                        path="/admin/:section" 
+                        element={<AdminPage user={user} onUserLogout={handleUserUpdateSuccess} />} 
+                    />
+                    {/* ----------------------------------------------------------- */}
                     
                 </Routes>
             </Layout>

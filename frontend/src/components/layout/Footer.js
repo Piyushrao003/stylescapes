@@ -16,7 +16,7 @@ const Footer = () => {
           <div className="footer-col brand-info">
             <Link to="/" className="brand-logo-container">
               <img
-                src={`${process.env.PUBLIC_URL}/logo.svg`}
+                src="/logo.svg"
                 alt="STYLESCAPES Logo"
                 className="brand-logo-img"
               />

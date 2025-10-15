@@ -1,0 +1,119 @@
+/* --- Theme Definitions --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* --- Light Theme Colors (softer palette) --- */
+    --light-bg: #f7f9fc;
+    --light-text-color: #333d52;
+    --light-secondary-text: #717d96;
+    --light-border-color: #e3e6ed;
+    --light-footer-bg: #ffffff;
+    --light-sidebar-link-hover: #f0f4f9;
+    --light-accent-color: #4a90e2;
+
+    /* --- Dark Theme Colors (pitch black) --- */
+    --dark-bg: #0a0a0a;
+    --dark-text-color: #ffffff;
+    --dark-secondary-text: #cccccc;
+    --dark-border-color: #333333;
+    --dark-footer-bg: #0a0a0a;
+    --dark-sidebar-link-hover: #1e1e1e;
+    --dark-accent-color: #4a90e2;
+
+    /* Default to Dark Theme */
+    --main-bg: var(--dark-bg);
+    --text-color: var(--dark-text-color);
+    --secondary-text: var(--dark-secondary-text);
+    --border-color: var(--dark-border-color);
+    --footer-bg: var(--dark-footer-bg);
+    --sidebar-link-hover: var(--dark-sidebar-link-hover);
+    --accent-color: var(--dark-accent-color);
+}
+
+/* Base Styles */
+.adf-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--footer-bg);
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    padding: 10px 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.adf-nav-list {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.adf-tab-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color: var(--secondary-text);
+    font-size: 14px;
+    padding: 8px 15px;
+    transition: color 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease;
+    border-radius: 6px;
+    white-space: nowrap; 
+}
+
+.adf-tab-link:hover {
+    color: var(--accent-color);
+    background-color: var(--sidebar-link-hover);
+}
+
+.adf-tab-link.active {
+    color: var(--accent-color);
+    background-color: var(--sidebar-link-hover);
+    /* Subtle shadow to indicate active state */
+    box-shadow: 0 0 5px rgba(var(--accent-color), 0.5); 
+}
+
+/* Icon Styling for SVG */
+.adf-tab-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    stroke: var(--secondary-text); /* Default color for inactive icons */
+    transition: transform 0.3s ease, stroke 0.3s ease;
+}
+
+/* Active icon styling */
+.adf-tab-link.active .adf-tab-icon {
+    stroke: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.adf-tab-link:hover .adf-tab-icon {
+    stroke: var(--accent-color);
+}
+
+
+/* Mobile Adjustments: Stack vertically if screen is small */
+@media (max-width: 500px) {
+    .adf-tab-link {
+        flex-direction: column;
+        padding: 5px;
+        min-width: 60px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .adf-tab-icon {
+        margin-right: 0;
+        margin-bottom: 3px;
+    }
+    
+    .adf-tab-label {
+        font-size: 10px;
+    }
+}

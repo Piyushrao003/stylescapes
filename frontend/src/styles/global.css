@@ -210,7 +210,7 @@ body.no-scroll {
 
 .logo-img {
   height: 50px; /* Increased from 45px */
-  width: 50px;  /* Increased from 45px */
+  width: 50px; /* Increased from 45px */
   margin-right: 12px; /* Increased spacing */
   border-radius: 8px;
   object-fit: contain;
@@ -357,32 +357,32 @@ body.no-scroll {
 
 /* Search Icon */
 .search-icon-header {
-    position: relative;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    text-decoration: none;
-    margin-right: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  text-decoration: none;
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .search-icon-header:hover {
-    transform: translateY(-3px);
-    filter: drop-shadow(0 0 10px var(--accent-blue));
+  transform: translateY(-3px);
+  filter: drop-shadow(0 0 10px var(--accent-blue));
 }
 
 .search-icon-header svg {
-    width: 26px;
-    height: 26px;
-    color: var(--secondary-text);
-    transition: all 0.4s ease;
-    stroke-width: 2;
+  width: 26px;
+  height: 26px;
+  color: var(--secondary-text);
+  transition: all 0.4s ease;
+  stroke-width: 2;
 }
 
 .search-icon-header:hover svg {
-    color: var(--accent-blue);
-    stroke-width: 2.5;
+  color: var(--accent-blue);
+  stroke-width: 2.5;
 }
 
 /* Profile Dropdown */
@@ -725,9 +725,8 @@ body.no-scroll {
   margin: 0;
   overflow: hidden;
   max-height: 0;
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.3s ease,
-              margin-top 0.3s ease;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease,
+    margin-top 0.3s ease;
   border-left: 2px solid transparent;
   margin-left: 1rem;
   opacity: 0;
@@ -1515,159 +1514,159 @@ body.no-scroll {
 /* ====================================================================== */
 
 .promo-banners-section {
-    padding: 6rem 4rem;
-    background: var(--primary-bg);
+  padding: 6rem 4rem;
+  background: var(--primary-bg);
 }
 
 .promo-banners-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
-    max-width: 1400px;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .promo-banner-card {
-    position: relative;
-    height: 500px;
-    border-radius: 20px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .promo-banner-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 .promo-banner-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
 }
 
 .promo-banner-card:hover .promo-banner-image {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .promo-banner-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        135deg,
-        rgba(0, 0, 0, 0.6) 0%,
-        rgba(74, 144, 226, 0.4) 100%
-    );
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.4s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(74, 144, 226, 0.4) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
 }
 
 .promo-banner-card:hover .promo-banner-overlay {
-    background: linear-gradient(
-        135deg,
-        rgba(0, 0, 0, 0.7) 0%,
-        rgba(74, 144, 226, 0.6) 100%
-    );
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(74, 144, 226, 0.6) 100%
+  );
 }
 
 .promo-banner-content {
-    text-align: center;
-    padding: 2rem;
-    transform: translateY(20px);
-    transition: all 0.4s ease;
+  text-align: center;
+  padding: 2rem;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
 }
 
 .promo-banner-card:hover .promo-banner-content {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 .promo-banner-title {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: var(--primary-text);
-    margin-bottom: 1rem;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--primary-text);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .promo-banner-subtitle {
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 2rem;
-    font-weight: 400;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+  font-weight: 400;
 }
 
 .promo-explore-btn {
-    display: inline-block;
-    background: var(--primary-text);
-    color: var(--primary-bg);
-    padding: 1rem 3rem;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    text-decoration: none;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    border: 2px solid var(--primary-text);
+  display: inline-block;
+  background: var(--primary-text);
+  color: var(--primary-bg);
+  padding: 1rem 3rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  border: 2px solid var(--primary-text);
 }
 
 .promo-explore-btn:hover {
-    background: transparent;
-    color: var(--primary-text);
-    transform: scale(1.05);
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: var(--primary-text);
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
 }
 
 /* Responsive Design for Promo Banners */
 @media (max-width: 768px) {
-    .promo-banners-section {
-        padding: 4rem 2rem;
-    }
-    
-    .promo-banners-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .promo-banner-card {
-        height: 400px;
-    }
-    
-    .promo-banner-title {
-        font-size: 2rem;
-    }
-    
-    .promo-banner-subtitle {
-        font-size: 1rem;
-    }
+  .promo-banners-section {
+    padding: 4rem 2rem;
+  }
+
+  .promo-banners-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .promo-banner-card {
+    height: 400px;
+  }
+
+  .promo-banner-title {
+    font-size: 2rem;
+  }
+
+  .promo-banner-subtitle {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
-    .promo-banner-card {
-        height: 350px;
-    }
-    
-    .promo-banner-title {
-        font-size: 1.5rem;
-    }
-    
-    .promo-banner-subtitle {
-        font-size: 0.9rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .promo-explore-btn {
-        padding: 0.75rem 2rem;
-        font-size: 0.85rem;
-    }
+  .promo-banner-card {
+    height: 350px;
+  }
+
+  .promo-banner-title {
+    font-size: 1.5rem;
+  }
+
+  .promo-banner-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .promo-explore-btn {
+    padding: 0.75rem 2rem;
+    font-size: 0.85rem;
+  }
 }
 
 /* ====================================================================== */
@@ -2014,13 +2013,6 @@ body.no-scroll {
   }
 }
 
-
-
-
-
-
-
-
 /* ====================================================================== */
 /* --- PRODUCT GRID FIX (FIXED COLUMNS) --- */
 /* ====================================================================== */
@@ -2082,7 +2074,11 @@ body.no-scroll {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(74, 144, 226, 0.8) 0%, rgba(147, 51, 234, 0.8) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(74, 144, 226, 0.8) 0%,
+    rgba(147, 51, 234, 0.8) 100%
+  );
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2208,7 +2204,7 @@ body.no-scroll {
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
   }
-  
+
   .featured-product-section,
   .brand-story,
   .newsletter {
@@ -2222,15 +2218,15 @@ body.no-scroll {
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
   }
-  
+
   .product-card {
     aspect-ratio: 1 / 1.3;
   }
-  
+
   .product-image-wrapper {
     height: 60%;
   }
-  
+
   .product-info {
     height: 40%;
     padding: 12px;
@@ -2243,19 +2239,19 @@ body.no-scroll {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
-  
+
   .product-card {
     aspect-ratio: 1 / 1.3;
   }
-  
+
   .product-info {
     padding: 10px;
   }
-  
+
   .product-name {
     font-size: 0.9rem;
   }
-  
+
   .product-price {
     font-size: 1rem;
   }
@@ -2267,19 +2263,19 @@ body.no-scroll {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
-  
+
   .product-card {
     aspect-ratio: 1 / 1.4;
   }
-  
+
   .product-info {
     padding: 8px;
   }
-  
+
   .product-name {
     font-size: 0.85rem;
   }
-  
+
   .product-price {
     font-size: 0.95rem;
   }
@@ -2291,20 +2287,88 @@ body.no-scroll {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
   }
-  
+
   .product-card {
     aspect-ratio: 1 / 1.4;
   }
-  
+
   .product-info {
     padding: 8px;
   }
-  
+
   .product-name {
     font-size: 0.8rem;
   }
-  
+
   .product-price {
     font-size: 0.9rem;
+  }
+}
+
+/* ====================================================================== */
+/* --- ADMIN LAYOUT STACKING (Add to end of global.css) --- */
+/* ====================================================================== */
+
+/* Base app container */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content area - default (public routes) */
+.main-content {
+  flex: 1;
+  padding-top: 90px; /* Space for fixed public header */
+  padding-bottom: 0;
+}
+
+/* Main content when on admin routes */
+.main-content.has-admin-header {
+  padding-top: 150px; /* 90px (public header) + 60px (admin header) */
+  padding-bottom: 60px; /* Space for admin footer */
+}
+
+/* Admin Header Positioning - Stack below public header */
+.adh-header {
+  position: fixed;
+  top: 90px; /* Position directly below public header */
+  left: 0;
+  width: 100%;
+  z-index: 49; /* Below public header (z-index: 10100) */
+}
+
+/* ====================================================================== */
+/* --- RESPONSIVE ADJUSTMENTS --- */
+/* ====================================================================== */
+
+/* Mobile - Adjust for smaller public header */
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: 70px; /* Smaller mobile header */
+    padding-bottom: 60px; /* Mobile tab bar */
+  }
+
+  .main-content.has-admin-header {
+    padding-top: 130px; /* 70px (mobile public header) + 60px (admin header) */
+    padding-bottom: 60px; /* Admin footer */
+  }
+
+  /* Admin header stacks below mobile public header */
+  .adh-header {
+    top: 70px;
+  }
+}
+
+/* Mobile - Admin header wraps (needs more space) */
+@media (max-width: 768px) {
+  .adh-header {
+    height: auto; /* Allow wrapping */
+    min-height: 60px;
+  }
+
+  /* Adjust if admin header wraps to ~100px */
+  .main-content.has-admin-header {
+    padding-top: 170px; /* 70px (public) + 100px (wrapped admin) */
   }
 }

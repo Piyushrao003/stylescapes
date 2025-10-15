@@ -188,8 +188,10 @@ const Header = ({ user, setUser, cartItemCount = 0 }) => {
                   </svg>
                   Profile
                 </NavLink>
+                
+                {/* ⭐️ MODIFIED: Settings replaced with Orders link */}
                 <NavLink
-                  to="/settings"
+                  to="/orders"
                   className="dropdown-item-profile"
                   onClick={() => setProfileDropdownOpen(false)}
                 >
@@ -203,11 +205,12 @@ const Header = ({ user, setUser, cartItemCount = 0 }) => {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth="2"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10m0-10l8 4"
                     />
                   </svg>
-                  Settings
+                  Orders
                 </NavLink>
+                
                 <a
                   href="#"
                   className="dropdown-item-profile"
@@ -290,13 +293,16 @@ const Header = ({ user, setUser, cartItemCount = 0 }) => {
               >
                 Profile
               </NavLink>
+              
+              {/* ⭐️ MODIFIED: Settings replaced with Orders link */}
               <NavLink
-                to="/settings"
+                to="/orders"
                 className="profile-action-mobile"
                 onClick={toggleSidePanel}
               >
-                Settings
+                Orders
               </NavLink>
+              
               <a
                 href="#"
                 className="profile-action-mobile"
