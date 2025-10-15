@@ -1,0 +1,260 @@
+/* D:\stylescapes\frontend\src\styles\ProductDetail.css */
+
+/* --- Shared Root Variables (Assumed Global but included for context) --- */
+:root {
+    --primary-bg: #000000;
+    --primary-text: #f8f8f8;
+    --secondary-text: #a0a0a0;
+    --card-bg: #1a1a1a;
+    --card-border: #333333;
+    --accent-blue: #4A90E2;
+    --light-blue-accent: #89CFF0;
+    --blue-gradient: linear-gradient(135deg, var(--accent-blue) 0%, var(--light-blue-accent) 100%);
+    --discount-red: #E74C3C; 
+}
+
+/* Base setup for all screen sizes */
+body, html {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* --- DESKTOP BASE (1025px and up) --- */
+.main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 4rem;
+    min-height: 100vh;
+}
+
+/* Product Media Column Styling */
+.product-media {
+    position: sticky;
+    top: 4rem; 
+    align-self: flex-start;
+}
+
+/* Structural Separators */
+.section-divider {
+    padding-top: 1rem;
+    border-top: 1px solid var(--card-border);
+    margin-top: 1.5rem;
+}
+.accordion-wrapper {
+    margin-top: 3rem;
+}
+
+
+/* --- Product Header Typography (Desktop) --- */
+.product-name {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+    background: var(--blue-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.product-brand {
+    font-size: 1.1rem;
+    color: var(--secondary-text);
+    margin-bottom: 1rem;
+}
+
+/* Price Block with Discount UI */
+.product-price-block {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.price-value {
+    /* Discounted Price (Blue Gradient) */
+    background: var(--blue-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1em; 
+}
+.price-original {
+    /* Original Price (Strikethrough) */
+    font-size: 1.4rem;
+    color: var(--secondary-text);
+    text-decoration: line-through;
+    font-weight: 400;
+}
+.discount-percentage {
+    /* Discount % Tag (Dark Orange/Light Red) */
+    font-size: 1.2rem;
+    color: var(--discount-red);
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.product-description {
+    color: var(--secondary-text);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+
+/* --- RELATED PRODUCTS LAYOUT (New Vertical Grid) --- */
+.related-products-section {
+    grid-column: 1 / -1; 
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--card-border);
+}
+
+.related-products-title {
+    font-size: 2rem;
+    font-weight: 800;
+    text-align: left; 
+    margin-bottom: 2.5rem;
+    background: var(--blue-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-left: 0; 
+}
+
+/* CRITICAL CHANGE: Vertical Grid Implementation */
+.related-products-grid {
+    display: grid;
+    /* Default: Mobile 2 columns */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1.5rem; /* Standard gap for vertical layout */
+    
+    /* Remove horizontal scroll overrides */
+    overflow-x: hidden; 
+    padding-bottom: 0; 
+}
+
+/* Desktop/Tablet Layout (4 columns) */
+@media (min-width: 768px) {
+    .related-products-grid {
+        /* Desktop/Tablet: 4 columns */
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 2rem;
+    }
+}
+
+/* Large Desktop Layout (5 columns for large screens) */
+@media (min-width: 1400px) {
+    .related-products-grid {
+        /* Large Desktop: 5 columns */
+        grid-template-columns: repeat(5, 1fr); 
+        gap: 2rem;
+    }
+}
+
+.scroll-hint {
+    /* This class is now obsolete and should be hidden/removed */
+    display: none;
+}
+
+
+/* --- Loading/Error States --- */
+.loading-state, .error-state {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: var(--secondary-text);
+    grid-column: 1 / -1;
+}
+
+
+/* ========================================================= */
+/* --- BREAKPOINT 1: Tablets & Small Laptops (Max-width 1024px) --- */
+/* ========================================================= */
+@media (max-width: 1024px) {
+    .main-container { 
+        padding: 2rem; 
+        grid-template-columns: 1fr; 
+        gap: 2rem; 
+    }
+    
+    .product-media { 
+        position: static; 
+    }
+    
+    .product-name { 
+        font-size: 2.5rem; 
+    }
+    .product-price-block { 
+        font-size: 2rem; 
+    }
+    .price-original { 
+        font-size: 1.2rem; 
+    }
+    .related-products-title { 
+        font-size: 1.8rem; 
+    }
+    .related-products-grid {
+        /* 3 columns for tablet view */
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 1.5rem;
+    }
+}
+
+
+/* ========================================================= */
+/* --- BREAKPOINT 2: Mobile Phones (Max-width 480px) --- */
+/* ========================================================= */
+@media (max-width: 480px) {
+    .main-container { 
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+    
+    .product-name { 
+        font-size: 1.75rem;
+        line-height: 1.2;
+    }
+
+    .product-price-block { 
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .price-original { 
+        font-size: 1rem; 
+    }
+
+    .discount-percentage {
+        font-size: 1rem; 
+    }
+
+    .related-products-section {
+        margin-left: 0; 
+        margin-right: 0;
+        padding-top: 1rem;
+    }
+
+    .related-products-title { 
+        font-size: 1.4rem;
+        text-align: left; 
+        padding-left: 1rem; 
+    }
+
+    .related-products-grid {
+        /* Mobile: 2 columns */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding-left: 1rem; /* Pad the start to align with text */
+        padding-right: 1rem;
+    }
+}

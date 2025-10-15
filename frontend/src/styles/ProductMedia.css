@@ -1,0 +1,131 @@
+/* D:\stylescapes\frontend\src\styles\ProductMedia.css */
+
+/* Note: Variables are assumed to be in a global file or defined here */
+:root {
+    --primary-text: #f8f8f8;
+    --card-bg: #1a1a1a;
+    --card-border: #333333;
+    --accent-blue: #4A90E2;
+    --blue-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    
+    /* Zoom Configuration */
+    --zoom-factor: 2.5; /* Magnification level */
+    --lens-size: 150px;
+    --magnified-view-size: 500px;
+}
+
+/* Parent wrapper for the main image block and thumbnails */
+.product-media-wrapper {
+    /* Uses display: flex; in the ProductDetail.js render to place magnified view correctly */
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.product-media-main {
+    width: 500px;
+    max-width: 100%;
+    flex-shrink: 0;
+}
+
+/* Main Viewer */
+.product-image-viewer {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* Creates a square container */
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+    box-shadow: var(--blue-shadow);
+    transition: all 0.5s ease;
+    cursor: crosshair;
+}
+
+.main-product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+}
+
+/* Zoom Lens - Desktop Only */
+.zoom-lens {
+    position: absolute;
+    width: var(--lens-size);
+    height: var(--lens-size);
+    border: 2px solid var(--primary-text); 
+    background: rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 0; 
+    pointer-events: none;
+    z-index: 5;
+    display: none; /* Controlled by JS/media query */
+}
+
+/* Magnified View Container - Desktop Only */
+.magnified-view {
+    width: var(--magnified-view-size);
+    height: var(--magnified-view-size);
+    border: 2px solid var(--accent-blue);
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--card-bg);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    display: none; /* Controlled by JS/media query */
+    flex-shrink: 0;
+}
+
+.magnified-img {
+    width: calc(100% * var(--zoom-factor));
+    height: calc(100% * var(--zoom-factor));
+    object-fit: cover;
+    transform-origin: 0 0;
+    position: relative;
+    transition: transform 0.05s linear;
+}
+
+/* Thumbnails */
+.product-thumbnails {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+.thumbnail.active, .thumbnail:hover {
+    border-color: var(--accent-blue);
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+    transform: translateY(-3px);
+}
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Mobile Adjustments (Hides zoom elements) */
+@media (max-width: 1024px) {
+    .magnified-view,
+    .zoom-lens {
+        display: none !important;
+    }
+    .product-media-wrapper {
+        flex-direction: column;
+    }
+    .product-image-viewer {
+        cursor: pointer;
+    }
+}

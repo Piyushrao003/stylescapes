@@ -1,0 +1,374 @@
+/* D:\stylescapes\frontend\src\styles\FilterSidebar.css */
+
+:root {
+  --primary-color: #ffffff;
+  --secondary-color: #ccc;
+  --accent-color: #d4a574;
+  --card-bg: #2a2a2a;
+  --border-color: #333;
+  --sidebar-width: 300px;
+  --sidebar-width-collapsed: 0px;
+  --sidebar-width-mobile: 70%;
+  --transition-speed: 0.3s;
+  --bg-color: #1a1a1a;
+}
+
+/* --- Sidebar Container & Fixed Positioning --- */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: calc(-1 * var(--sidebar-width)); /* Hidden by default on desktop */
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: var(--card-bg);
+  border-right: 1px solid var(--border-color);
+  z-index: 100;
+  transition: left var(--transition-speed) ease;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sidebar visible state (when opened via hamburger) */
+.sidebar.open {
+  left: 0;
+}
+
+/* Desktop collapsed state */
+.sidebar.collapsed {
+  left: calc(-1 * var(--sidebar-width));
+}
+
+/* Sidebar Scrollbar Styles */
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+.sidebar::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 4px;
+}
+
+/* Mobile Overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-speed) ease;
+}
+.sidebar-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  display: block;
+}
+
+/* Desktop Top Controls */
+.sidebar-top-controls {
+  padding: 15px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card-bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.sidebar-logo {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.close-sidebar {
+  background: none;
+  border: none;
+  color: var(--secondary-color);
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s ease;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-sidebar:hover {
+  color: var(--accent-color);
+}
+
+/* Mobile Header */
+.mobile-header {
+  display: none;
+  justify-content: space-between;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--card-bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  align-items: center;
+}
+.sidebar-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* --- Sidebar Content and Filter Styling --- */
+
+.sidebar-content {
+  padding: 20px;
+  flex-grow: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.clear-filters-btn {
+  width: 100%;
+  background: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.clear-filters-btn:hover:not(:disabled) {
+  background: var(--accent-color);
+  color: #000;
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+.clear-filters-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: #555;
+  color: #555;
+}
+
+/* Filter Groups */
+.filter-section {
+  margin-bottom: 30px;
+}
+.filter-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.filter-title::before {
+  content: "";
+  width: 4px;
+  height: 16px;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+.filter-option:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.filter-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  position: relative;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.filter-checkbox.checked {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  transform: scale(1.05);
+}
+.filter-checkbox.checked::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  color: #000;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Price Input Fixes */
+.price-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+.price-input-wrapper {
+  flex: 1;
+  position: relative;
+}
+.price-input-wrapper::before {
+  content: "₹";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent-color);
+  font-weight: 600;
+  z-index: 1;
+}
+.price-input {
+  width: 100%;
+  background: var(--bg-color);
+  border: 2px solid var(--border-color);
+  color: var(--primary-color);
+  padding: 10px 12px 10px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+.price-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+/* Mobile Footer (Apply Button) */
+.sidebar-footer {
+  padding: 15px 20px;
+  border-top: 1px solid var(--border-color);
+  background: var(--card-bg);
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  display: none;
+  justify-content: center;
+}
+.apply-filters-btn {
+  width: 100%;
+  background: var(--accent-color);
+  color: #000;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.apply-filters-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.4);
+}
+
+/* --- Responsive Rules --- */
+
+/* Desktop (768px and above) */
+@media (min-width: 768px) {
+  .sidebar {
+    left: calc(-1 * var(--sidebar-width)); /* Hidden by default */
+  }
+  
+  .sidebar.open {
+    left: 0; /* Visible when opened */
+  }
+  
+  .sidebar.collapsed {
+    left: calc(-1 * var(--sidebar-width)); /* Collapsed = hidden */
+  }
+  
+  .sidebar-top-controls {
+    display: flex;
+  }
+  
+  .mobile-header,
+  .sidebar-overlay,
+  .sidebar-footer {
+    display: none !important;
+  }
+}
+
+/* Mobile (767px and below) */
+@media (max-width: 767px) {
+  .sidebar {
+    width: var(--sidebar-width-mobile) !important; /* Force 70% width on mobile */
+    max-width: 320px; /* Cap maximum width for larger phones */
+    left: calc(-1 * var(--sidebar-width-mobile)) !important; /* Hidden by default */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .sidebar.open {
+    left: 0 !important; /* Visible when opened */
+  }
+  
+  /* Adjust internal padding for mobile */
+  .sidebar-content {
+    padding: 16px;
+  }
+  
+  /* Adjust filter option padding */
+  .filter-option {
+    padding: 10px 8px;
+  }
+  
+  /* Make price inputs stack better on narrow mobile sidebar */
+  .price-input-wrapper::before {
+    left: 10px;
+  }
+  
+  .price-input {
+    padding: 9px 10px 9px 26px;
+    font-size: 13px;
+  }
+  
+  /* Adjust filter titles for mobile */
+  .filter-title {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+  
+  /* Clear filters button adjustment */
+  .clear-filters-btn {
+    padding: 10px 14px;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .mobile-header,
+  .sidebar-footer {
+    display: flex !important;
+  }
+  
+  .sidebar-top-controls {
+    display: none !important;
+  }
+}

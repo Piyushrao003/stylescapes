@@ -1,0 +1,285 @@
+/* D:\stylescapes\frontend\src\styles\AuthComp.css - Form component styles */
+
+/* Import Boxicons and Poppins font */
+@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Scoped CSS Variables for Auth Components */
+.auth-container {
+    --auth-primary-color: #4a5568;
+    --auth-text-color: #ffffff;
+    --auth-secondary-text: #a0aec0;
+    --auth-bg-color: #2d3748;
+    --auth-hover-bg: #1a202c;
+    --auth-brand-accent: #b8860b;
+    --auth-border-color: #4a5568;
+    --auth-focus-border: #ffffff;
+}
+
+/* Form Section Styles - Scoped to auth container */
+.auth-container .form-section {
+    display: none;
+    animation: authFadeIn 0.5s ease-in-out;
+}
+
+.auth-container .form-section.active {
+    display: block;
+}
+
+@keyframes authFadeIn {
+    from { 
+        opacity: 0; 
+        transform: scale(0.98); 
+    }
+    to { 
+        opacity: 1; 
+        transform: scale(1); 
+    }
+}
+
+/* Logo Container - Scoped */
+.auth-container .logo-container {
+    width: 120px;
+    height: auto;
+    margin: 0 auto 20px auto;
+}
+
+.auth-container .logo-container img {
+    width: 100%;
+    height: auto;
+}
+
+/* Input Box Styles - Scoped */
+.auth-container .input_box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.auth-container .input-field {
+    width: 100%;
+    height: 55px;
+    font-size: 16px;
+    background: transparent;
+    color: var(--auth-text-color);
+    /* Ensure padding for icons or toggle: 20px left, 50px right */
+    padding-inline: 20px 50px; 
+    border: 2px solid var(--auth-border-color);
+    border-radius: 30px;
+    outline: none;
+    font-family: "Poppins", sans-serif !important;
+}
+
+.auth-container .input-field:focus {
+    border-color: var(--auth-focus-border);
+}
+
+/* Label Styles - Scoped */
+.auth-container .label {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    transition: 0.2s;
+    pointer-events: none;
+    color: var(--auth-secondary-text);
+    font-family: "Poppins", sans-serif !important;
+}
+
+.auth-container .input-field:focus ~ .label,
+.auth-container .input-field:valid ~ .label,
+.auth-container .input-field:not(:placeholder-shown) ~ .label {
+    top: -10px;
+    left: 20px;
+    font-size: 14px;
+    background-color: var(--auth-bg-color);
+    border-radius: 30px;
+    color: var(--auth-text-color);
+    padding: 0 10px;
+}
+
+/* NEW: Password Toggle Icon Styles */
+.auth-container .password-toggle-icon {
+    position: absolute;
+    top: 18px; /* Aligned with input text */
+    right: 25px; /* Position inside the box */
+    font-size: 20px;
+    color: var(--auth-secondary-text);
+    cursor: pointer;
+    transition: color 0.2s ease;
+    z-index: 10; /* Ensure clickability */
+}
+
+.auth-container .password-toggle-icon:hover {
+    color: var(--auth-brand-accent);
+}
+
+/* The generic .icon class definition has been removed or replaced, ensuring only the 
+   interactive password field has an icon. */
+
+
+/* Remember and Forgot Styles - Scoped */
+.auth-container .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    margin-top: 10px;
+    font-family: "Poppins", sans-serif !important;
+}
+
+.auth-container .remember-me {
+    color: var(--auth-secondary-text);
+}
+
+.auth-container .remember-me input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Submit Button Styles - Scoped */
+.auth-container .input-submit {
+    width: 100%;
+    height: 50px;
+    background: var(--auth-bg-color);
+    color: var(--auth-text-color);
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-family: "Poppins", sans-serif !important;
+}
+
+.auth-container .input-submit:hover {
+    background: var(--auth-hover-bg);
+}
+
+/* Register and Go Back Styles - Scoped */
+.auth-container .register, 
+.auth-container .go-back {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--auth-secondary-text);
+    font-family: "Poppins", sans-serif !important;
+}
+
+/* Form Content Styles - Scoped */
+.auth-container .form-content h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--auth-text-color);
+    font-family: "Poppins", sans-serif !important;
+}
+
+.auth-container .form-content p {
+    text-align: center;
+    color: var(--auth-secondary-text);
+    margin-bottom: 20px;
+    font-family: "Poppins", sans-serif !important;
+}
+
+/* Name Fields Container - Scoped */
+.auth-container .name-fields {
+    display: flex;
+    gap: 15px;
+}
+
+.auth-container .name-fields .input_box {
+    margin-top: 0;
+}
+
+/* OTP Container Styles - Scoped (retained for future use) */
+.auth-container .otp-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.auth-container .otp-input {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+    text-align: center;
+    background: transparent;
+    border: 2px solid var(--auth-border-color);
+    border-radius: 10px;
+    color: var(--auth-text-color);
+    outline: none;
+    font-family: "Poppins", sans-serif !important;
+}
+
+.auth-container .otp-input:focus {
+    border-color: var(--auth-focus-border);
+}
+
+/* Confirmation Content Styles - Scoped */
+.auth-container .confirmation-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    padding: 4em 0;
+    font-family: "Poppins", sans-serif !important;
+}
+
+.auth-container .checkmark {
+    font-size: 80px;
+    color: #48bb78;
+    animation: authScaleUp 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+@keyframes authScaleUp {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design for Components - Scoped */
+@media (max-width: 480px) {
+    .auth-container .name-fields {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .auth-container .name-fields .input_box {
+        margin: 10px 0;
+    }
+    
+    .auth-container .otp-container {
+        gap: 5px;
+    }
+    
+    .auth-container .otp-input {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .auth-container .form-content h2 {
+        font-size: 20px;
+    }
+    
+    .auth-container .checkmark {
+        font-size: 60px;
+    }
+    
+    .auth-container .input-field {
+        height: 50px;
+        font-size: 14px;
+    }
+    
+    .auth-container .input-submit {
+        height: 45px;
+        font-size: 14px;
+    }
+}

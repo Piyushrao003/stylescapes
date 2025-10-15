@@ -1,0 +1,340 @@
+/* frontend/src/styles/Settings.css */
+
+/* --- Root Variables (Consistent with application) --- */
+:root {
+    --stg-primary-bg: #000000;
+    --stg-secondary-bg: #111113;
+    --stg-primary-text: #ffffff;
+    --stg-secondary-text: #a0a0a3;
+    --stg-card-bg: #1a1a1d;
+    --stg-card-bg-light: #222225;
+    --stg-card-border: #333333;
+    --stg-accent-blue: #4a90e2;
+    --stg-accent-purple: #8b5cf6;
+    --stg-success-green: #10b981;
+    --stg-error-red: #ef4444;
+    --stg-gradient-primary: linear-gradient(
+        135deg,
+        var(--stg-accent-blue) 0%,
+        var(--stg-accent-purple) 100%
+    );
+    --stg-transition: all 0.3s ease;
+    --stg-border-radius: 12px;
+    --stg-mobile-padding: 1.5rem;
+}
+
+/* --- Account Content Area --- */
+.stg-account-content {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--stg-card-bg-light);
+    border: 1px solid var(--stg-card-border);
+    border-radius: var(--stg-border-radius);
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.stg-section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    background: var(--stg-gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
+}
+
+.stg-content-section {
+    display: block;
+}
+
+.stg-content-section.stg-active {
+    display: block;
+}
+
+/* --- Settings Card --- */
+.stg-settings-card {
+    background: var(--stg-secondary-bg);
+    border: 1px solid var(--stg-card-border);
+    border-radius: var(--stg-border-radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
+}
+
+.stg-settings-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--stg-gradient-primary);
+    border-radius: var(--stg-border-radius) var(--stg-border-radius) 0 0;
+}
+
+.stg-settings-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    background: var(--stg-gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+.stg-card-description {
+    color: var(--stg-secondary-text);
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+/* --- Toggle Switch --- */
+.stg-toggle-switch-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--stg-card-border);
+}
+
+.stg-toggle-switch-container:last-of-type {
+    border-bottom: none;
+}
+
+.stg-toggle-label {
+    font-size: 1rem;
+    color: var(--stg-primary-text);
+    font-weight: 500;
+}
+
+.stg-toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.stg-toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.stg-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--stg-card-border);
+    transition: 0.4s;
+    border-radius: 32px;
+}
+
+.stg-slider:before {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 24px;
+    left: 4px;
+    bottom: 4px;
+    background: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+.stg-toggle-switch input:checked + .stg-slider {
+    background: var(--stg-gradient-primary);
+}
+
+.stg-toggle-switch input:checked + .stg-slider:before {
+    transform: translateX(28px);
+}
+
+/* --- Change Password Button --- */
+.stg-change-password-btn {
+    width: 100%;
+    background: var(--stg-gradient-primary);
+    border: none;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--stg-transition);
+}
+
+.stg-change-password-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+}
+
+/* --- Modal Styles --- */
+.stg-modal {
+    display: flex;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.stg-modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--stg-card-bg);
+    padding: 2.5rem;
+    border: 1px solid var(--stg-card-border);
+    width: 90%;
+    max-width: 500px;
+    border-radius: var(--stg-border-radius);
+    position: relative;
+}
+
+.stg-modal-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1rem;
+    display: block;
+    color: var(--stg-accent-blue);
+}
+
+.stg-modal-content h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--stg-primary-text);
+}
+
+/* --- Form Styles --- */
+.stg-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.stg-form-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--stg-secondary-text);
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.stg-form-group input,
+.stg-form-group select {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--stg-card-border);
+    border-radius: var(--stg-border-radius);
+    background: var(--stg-primary-bg);
+    color: var(--stg-primary-text);
+    font-size: 1rem;
+}
+
+.stg-form-group input:focus,
+.stg-form-group select:focus {
+    outline: none;
+    border-color: var(--stg-accent-blue);
+}
+
+/* --- Modal Buttons --- */
+.stg-modal-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.stg-btn {
+    flex: 1;
+    background: var(--stg-gradient-primary);
+    border: none;
+    color: white;
+    padding: 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--stg-transition);
+}
+
+.stg-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+}
+
+.stg-btn-secondary {
+    background: var(--stg-card-border);
+    color: var(--stg-secondary-text);
+}
+
+.stg-btn-secondary:hover {
+    background: var(--stg-card-border);
+    box-shadow: none;
+}
+
+/* --- Form Grid --- */
+.stg-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* --- Detect Location Button --- */
+.stg-detect-location-btn {
+    width: 100%;
+    background: var(--stg-success-green);
+    border: none;
+    color: white;
+    padding: 1rem;
+    border-radius: var(--stg-border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.stg-detect-location-btn:hover {
+    background: #059669;
+}
+
+/* --- Loading Spinner --- */
+.stg-loading-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: stg-spin 0.6s linear infinite;
+}
+
+@keyframes stg-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .stg-account-content {
+        padding: 1.5rem;
+    }
+    
+    .stg-form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stg-toggle-switch-container {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+}

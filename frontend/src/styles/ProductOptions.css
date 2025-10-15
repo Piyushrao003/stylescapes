@@ -1,0 +1,205 @@
+/* D:\stylescapes\frontend\src\styles\ProductOptions.css */
+
+/* Note: Variables are assumed to be available globally or defined in the main CSS */
+:root {
+    --primary-bg: #000000;
+    --primary-text: #f8f8f8;
+    --secondary-text: #a0a0a0;
+    --card-border: #333333;
+    --accent-blue: #4A90E2;
+    --light-blue-accent: #89CFF0;
+    --blue-gradient: linear-gradient(135deg, var(--accent-blue) 0%, var(--light-blue-accent) 100%);
+    --blue-shadow: 0 20px 60px rgba(74, 144, 226, 0.1);
+    --accent-orange: #FF6B35;
+    --light-orange: #FF8C61;
+    --orange-gradient: linear-gradient(135deg, var(--accent-orange) 0%, var(--light-orange) 100%);
+    --orange-shadow: 0 20px 60px rgba(255, 107, 53, 0.15);
+    /* Luxury Gold Colors */
+    --luxury-gold-color: #ffd700;
+    --luxury-gold-gradient: radial-gradient(circle, var(--luxury-gold-color) 0%, rgba(255, 255, 255, 0.0) 70%);
+}
+
+.product-options-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* --- Options Group Styling --- */
+.product-options {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 2rem;
+}
+.option-group {
+    margin-bottom: 1.5rem;
+}
+.option-label {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    display: block;
+}
+
+/* Color Swatches */
+.color-swatches {
+    display: flex;
+    gap: 0.8rem;
+}
+.color-swatch {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    outline: 1px solid var(--secondary-text); 
+}
+.color-swatch.active {
+    border-color: var(--accent-blue);
+    transform: scale(1.1);
+    outline: 2px solid var(--accent-blue);
+}
+.color-swatch:hover:not(.active) {
+    transform: scale(1.05);
+    outline: 2px solid var(--primary-text);
+}
+
+/* Size Options */
+.size-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+.size-option {
+    padding: 0.8rem 1.2rem;
+    border: 2px solid var(--secondary-text);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+.size-option.active {
+    background: var(--blue-gradient);
+    border-color: var(--accent-blue);
+    color: var(--primary-bg);
+    font-weight: 700;
+    transform: translateY(-2px);
+}
+.size-option:hover:not(.active) {
+    border-color: var(--primary-text);
+    transform: translateY(-1px);
+}
+
+/* --- CTA Buttons Styling --- */
+.cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Add to Cart Button */
+.btn-add-to-cart {
+    width: 100%;
+    padding: 1.2rem;
+    background: var(--blue-gradient);
+    color: var(--primary-bg);
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--blue-shadow);
+    position: relative;
+    overflow: hidden;
+}
+.btn-add-to-cart::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.6s ease;
+    transform: rotate(45deg) translateX(-100%);
+}
+.btn-add-to-cart:hover::before {
+    transform: rotate(45deg) translateX(100%);
+}
+.btn-add-to-cart:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(74, 144, 226, 0.4);
+}
+
+/* Buy Now Button (Luxury Shimmer Animation) */
+.btn-buy-now {
+    width: 100%;
+    padding: 1.2rem;
+    background: var(--orange-gradient);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--orange-shadow);
+    position: relative;
+    z-index: 1; 
+}
+
+/* Golden Dust Shimmer Effect Layer */
+.btn-buy-now::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    background: 
+        var(--luxury-gold-gradient) 5% 10%,
+        var(--luxury-gold-gradient) 50% 90%,
+        var(--luxury-gold-gradient) 80% 30%,
+        var(--luxury-gold-gradient) 25% 65%,
+        var(--luxury-gold-gradient) 90% 50%;
+    background-size: 50px 50px, 40px 40px, 30px 30px, 60px 60px, 45px 45px;
+    background-repeat: no-repeat;
+}
+
+/* Animation when hovering over the button */
+.btn-buy-now:hover::before {
+    opacity: 0.8; 
+    animation: luxuryShimmer 1.5s infinite alternate; 
+}
+
+@keyframes luxuryShimmer {
+    0% {
+        background-position: 5% 10%, 50% 90%, 80% 30%, 25% 65%, 90% 50%;
+        transform: scale(1.0);
+    }
+    100% {
+        background-position: 7% 12%, 48% 88%, 82% 32%, 23% 67%, 92% 52%;
+        transform: scale(1.01);
+    }
+}
+
+/* Standard hover effects */
+.btn-buy-now:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(255, 107, 53, 0.5);
+}
+
+/* Utility for demonstration */
+.status-message {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #10b981;
+}

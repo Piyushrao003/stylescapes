@@ -1,0 +1,202 @@
+/* frontend/src/styles/ProfilePage.css */
+
+/* --- Root Variables (Shared) --- */
+:root {
+    --pp-primary-bg: #000000;
+    --pp-secondary-bg: #111113;
+    --pp-primary-text: #ffffff;
+    --pp-secondary-text: #a0a0a3;
+    --pp-card-bg: #1a1a1d;
+    --pp-card-bg-light: #222225;
+    --pp-card-border: #333333;
+    --pp-accent-blue: #4A90E2;
+    --pp-accent-purple: #8b5cf6;
+    --pp-gradient-primary: linear-gradient(135deg, var(--pp-accent-blue) 0%, var(--pp-accent-purple) 100%);
+    --pp-transition: all 0.3s ease;
+    --pp-border-radius: 12px;
+}
+
+/* --- Page Wrapper --- */
+.pp-profile-page-wrapper {
+    min-height: 100vh;
+    background: var(--pp-primary-bg);
+    padding-top: 120px;
+    padding-bottom: 3rem;
+}
+
+/* --- Main Container --- */
+.pp-container {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+/* --- Sidebar Column --- */
+.pp-sidebar-column {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+/* --- Content Column --- */
+.pp-content-column {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Remove default backgrounds from child components to prevent nesting issues */
+.pp-content-column > * {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Restore backgrounds for actual content cards inside components */
+.pp-content-column .profileDetails-card,
+.pp-content-column .stg-settings-card,
+.pp-content-column .addressBook-card,
+.pp-content-column .wlm-wishlist-item {
+    background: var(--pp-card-bg) !important;
+    border: 1px solid var(--pp-card-border) !important;
+    padding: 2rem !important;
+}
+
+/* --- Loading State --- */
+.pp-loading-state {
+    color: var(--pp-secondary-text);
+    text-align: center;
+    padding: 4rem 2rem;
+    font-size: 1.2rem;
+}
+
+/* --- Auth Card (Login Required State) --- */
+.pp-auth-card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    width: 100%;
+}
+
+.pp-auth-card {
+    background: var(--pp-card-bg-light);
+    border: 1px solid var(--pp-card-border);
+    border-radius: var(--pp-border-radius);
+    padding: 3rem;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.pp-auth-card-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.pp-auth-card h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: var(--pp-gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.pp-auth-card p {
+    color: var(--pp-secondary-text);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.pp-btn-browse {
+    padding: 1rem 2rem;
+    background: var(--pp-gradient-primary);
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--pp-transition);
+    display: inline-block;
+}
+
+.pp-btn-browse:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+}
+
+/* --- Mobile & Tablet Responsive Design --- */
+@media (max-width: 900px) {
+    .pp-profile-page-wrapper {
+        padding-top: 80px;
+    }
+
+    .pp-container {
+        flex-direction: column;
+        padding: 0 1rem;
+        gap: 0;
+    }
+
+    .pp-sidebar-column {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .pp-content-column {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .pp-profile-page-wrapper {
+        padding-top: 60px;
+    }
+
+    .pp-container {
+        padding: 0 0.5rem;
+    }
+
+    .pp-auth-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .pp-auth-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .pp-auth-card-icon {
+        font-size: 3rem;
+    }
+}
+
+/* --- Fix for Hamburger Button Positioning --- */
+@media (max-width: 768px) {
+    /* Ensure hamburger button doesn't overlap with header */
+    .psp-hamburger-btn {
+        top: 80px !important;
+        left: 1rem !important;
+        z-index: 9998 !important;
+    }
+
+    /* Adjust overlay z-index to stay below header but above content */
+    .psp-side-panel-overlay {
+        z-index: 9997 !important;
+        top: 60px !important;
+        height: calc(100% - 60px) !important;
+    }
+
+    /* Adjust sidebar panel */
+    .psp-side-panel {
+        top: 60px !important;
+        height: calc(100% - 60px) !important;
+        z-index: 9998 !important;
+    }
+}

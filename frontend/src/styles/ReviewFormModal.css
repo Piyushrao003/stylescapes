@@ -1,0 +1,185 @@
+/* D:\stylescapes\frontend\src\styles\ReviewFormModal.css */
+
+:root {
+    --primary-bg: #000000;
+    --primary-text: #f8f8f8;
+    --secondary-text: #a0a0a0;
+    --card-bg: #1a1a1a;
+    --card-border: #333333;
+    --accent-blue: #4A90E2;
+    --light-blue-accent: #89CFF0;
+    --blue-gradient: linear-gradient(135deg, var(--accent-blue) 0%, var(--light-blue-accent) 100%);
+    --gold-accent: #DAA520;
+}
+
+/* --- Modal Structure --- */
+.review-form-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+.review-form-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Modal Container */
+.review-form-container {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    
+    transform: translateY(-30px);
+    transition: transform 0.4s ease-out;
+}
+.review-form-modal.active .review-form-container {
+    transform: translateY(0);
+}
+
+.review-form-container h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: var(--blue-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Close Button */
+.close-modal {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--secondary-text);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.close-modal:hover {
+    color: var(--accent-blue);
+    transform: rotate(90deg);
+}
+
+/* --- Form Elements --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary-text);
+}
+
+/* Form Inputs */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--primary-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    color: var(--primary-text);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Star Rating Input */
+.star-rating-input {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 2rem;
+}
+.star-rating-input span {
+    color: var(--card-border);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+/* Active/Hover Star Color */
+.star-rating-input span.active,
+.star-rating-input span:hover {
+    color: var(--gold-accent) !important;
+}
+
+/* Submit Button */
+.btn-submit-review {
+    width: 100%;
+    padding: 1rem;
+    background: var(--blue-gradient);
+    color: var(--primary-bg);
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    box-shadow: 0 10px 20px rgba(74, 144, 226, 0.3);
+}
+.btn-submit-review:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(74, 144, 226, 0.5);
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .review-form-container {
+        padding: 1.5rem;
+    }
+    .review-form-container h3 {
+        font-size: 1.5rem;
+    }
+    .close-modal {
+        font-size: 1.5rem;
+        top: 1rem;
+        right: 1rem;
+    }
+    .star-rating-input {
+        font-size: 1.5rem;
+    }
+}

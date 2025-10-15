@@ -1,0 +1,724 @@
+/* OrdersPage.css - Main styles for orders page (excluding animation) */
+
+:root {
+    --primary-bg: #000000;
+    --secondary-bg: #0a0a0a;
+    --card-bg: #111111;
+    --primary-text: #ffffff;
+    --secondary-text: #a0a0a0;
+    --card-border: #222222;
+    --accent-blue: #4a90e2;
+    --light-blue: #89cff0;
+    --gradient-blue: linear-gradient(135deg, #4a90e2 0%, #89cff0 100%);
+    --status-delivered: #2ecc71;
+    --status-shipped: #3498db;
+    --status-pending: #f39c12;
+    --status-cancelled: #e74c3c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--primary-bg);
+    color: var(--primary-text);
+    overflow-x: hidden;
+}
+
+.orders-container{
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+   /* min-height: calc(100vh - 200px); /* ADDED: Ensure minimum height */
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 3rem;
+    background: var(--gradient-blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ADDED: Empty State Container - Full Height */
+.empty-orders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 400px); /* ADDED: Take up viewport height minus header/footer */
+    text-align: center;
+    padding: 3rem 2rem;
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ADDED: Empty State Icon */
+.empty-orders-icon {
+    font-size: 8rem;
+    margin-bottom: 2rem;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 10px 20px rgba(74, 144, 226, 0.3));
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* ADDED: Empty State Text */
+.empty-orders h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: var(--gradient-blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.empty-orders p {
+    font-size: 1.2rem;
+    color: var(--secondary-text);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* ADDED: Browse Button Styling */
+.btn-browse {
+    padding: 1rem 3rem;
+    background: var(--gradient-blue);
+    color: var(--primary-text);
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+    display: inline-block;
+}
+
+.btn-browse:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(74, 144, 226, 0.5);
+}
+
+/* ADDED: Loading State */
+.loading-state-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 200px);
+    font-size: 1.5rem;
+    color: var(--secondary-text);
+}
+
+/* Orders Grid */
+.orders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Compact Order Card */
+.order-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.order-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.2);
+    border-color: var(--accent-blue);
+}
+
+.order-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: var(--secondary-bg);
+}
+
+.order-content {
+    padding: 1.25rem;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.order-info h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-text);
+    margin-bottom: 0.5rem;
+}
+
+.order-info p {
+    font-size: 0.85rem;
+    color: var(--secondary-text);
+}
+
+.order-id {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary-text);
+    margin-bottom: 0.3rem;
+}
+
+.order-date {
+    font-size: 0.8rem;
+    color: var(--secondary-text);
+}
+
+/* UPDATED: Order Status Badge */
+.order-status {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0.75rem 0;
+}
+
+.status-delivered,
+.status-delivered {
+    background: rgba(46, 204, 113, 0.15);
+    color: var(--status-delivered);
+}
+
+.status-shipped,
+.status-shipped {
+    background: rgba(52, 152, 219, 0.15);
+    color: var(--status-shipped);
+}
+
+.status-pending,
+.status-processing {
+    background: rgba(243, 156, 18, 0.15);
+    color: var(--status-pending);
+}
+
+.status-cancelled,
+.status-cancelled {
+    background: rgba(231, 76, 60, 0.15);
+    color: var(--status-cancelled);
+}
+
+.status-packed {
+    background: rgba(155, 89, 182, 0.15);
+    color: #9b59b6;
+}
+
+.status-out-for-delivery {
+    background: rgba(52, 152, 219, 0.15);
+    color: var(--status-shipped);
+}
+
+.order-info {
+    margin-bottom: 1rem;
+}
+
+.items-count {
+    font-size: 0.85rem;
+    color: var(--secondary-text);
+    margin-bottom: 0.5rem;
+}
+
+.order-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--card-border);
+}
+
+.order-total {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: var(--gradient-blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Action Buttons */
+.order-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.btn {
+    padding: 0.65rem 1.2rem;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.track-order-btn {
+    background: var(--gradient-blue);
+    color: var(--primary-text);
+}
+
+.btn-primary {
+    background: var(--gradient-blue);
+    color: var(--primary-text);
+}
+
+.btn-primary:hover,
+.track-order-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+}
+
+.btn-secondary {
+    background: var(--secondary-bg);
+    color: var(--secondary-text);
+    border: 1px solid var(--card-border);
+}
+
+.btn-secondary:hover {
+    background: var(--card-bg);
+    color: var(--primary-text);
+    border-color: var(--accent-blue);
+}
+
+.btn-danger {
+    background: rgba(231, 76, 60, 0.1);
+    color: var(--status-cancelled);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.btn-danger:hover {
+    background: rgba(231, 76, 60, 0.2);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    margin: 2rem auto;
+    padding: 2.5rem;
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    max-width: 900px;
+    width: 90%;
+    position: relative;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-btn {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    font-size: 2rem;
+    color: var(--secondary-text);
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: color 0.3s;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.close-btn:hover {
+    color: var(--primary-text);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.modal-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: var(--gradient-blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.modal-subtitle {
+    font-size: 0.95rem;
+    color: var(--secondary-text);
+}
+
+/* Order Details in Modal */
+.order-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.detail-card {
+    background: var(--secondary-bg);
+    padding: 1.25rem;
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+}
+
+.detail-label {
+    font-size: 0.8rem;
+    color: var(--secondary-text);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+.detail-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-text);
+}
+
+/* Items List in Modal */
+.items-section {
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--primary-text);
+}
+
+.item-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--secondary-bg);
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--card-border);
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.item-specs {
+    font-size: 0.85rem;
+    color: var(--secondary-text);
+}
+
+.item-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    align-self: center;
+}
+
+/* ADDED: Track Animation Container */
+.track-animation-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin: 2rem 0;
+    background: var(--secondary-bg);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.truck-container {
+    position: absolute;
+    width: 120px;
+    height: 60px;
+    transition: left 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.truck-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.progress-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 2rem;
+}
+
+.progress-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--card-border);
+    transition: all 0.3s ease;
+}
+
+.progress-dot.active {
+    background: var(--accent-blue);
+    transform: scale(1.5);
+    box-shadow: 0 0 15px var(--accent-blue);
+}
+
+.progress-dot.completed {
+    background: var(--status-delivered);
+}
+
+.road {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--card-border);
+}
+
+/* Timeline */
+.tracking-timeline {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 2rem;
+}
+
+.tracking-timeline::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: var(--card-border);
+}
+
+.timeline-event {
+    position: relative;
+    padding-bottom: 2rem;
+}
+
+.timeline-event::before {
+    content: "";
+    position: absolute;
+    left: -24px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    background: var(--card-bg);
+    border: 3px solid var(--card-border);
+    border-radius: 50%;
+}
+
+.timeline-event.completed::before {
+    background: var(--status-delivered);
+    border-color: var(--status-delivered);
+}
+
+.timeline-event.active::before {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(74, 144, 226, 0.7);
+    }
+    50% {
+        transform: scale(1.2);
+        box-shadow: 0 0 0 10px rgba(74, 144, 226, 0);
+    }
+}
+
+.event-date {
+    font-size: 0.8rem;
+    color: var(--secondary-text);
+    margin-bottom: 0.2rem;
+    display: block;
+}
+
+.event-details {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--primary-text);
+    margin: 0;
+}
+
+.event-details-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Modal Actions */
+.modal-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--card-border);
+}
+
+/* Responsive */
+@media (min-width: 640px) {
+    .orders-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .orders-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .order-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    .orders-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .orders-container{
+        padding: 1.5rem;
+        /*min-height: calc(100vh - 140px); /* ADDED: Account for mobile header/footer */
+    }
+    
+    .empty-orders {
+        min-height: calc(100vh - 300px);
+        padding: 2rem 1rem;
+    }
+    
+    .empty-orders-icon {
+        font-size: 6rem;
+    }
+    
+    .empty-orders h2 {
+        font-size: 2rem;
+    }
+    
+    .empty-orders p {
+        font-size: 1rem;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .modal-content {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    .modal-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .order-details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .track-animation-container {
+        height: 150px;
+    }
+    
+    .progress-dots {
+        gap: 1rem;
+    }
+}

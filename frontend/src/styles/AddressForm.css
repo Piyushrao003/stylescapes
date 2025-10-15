@@ -1,0 +1,215 @@
+/* frontend/src/styles/AddressForm.css */
+
+/* --- Root Variables --- */
+:root {
+    --primary-bg: #000000;
+    --primary-text: #ffffff;
+    --secondary-text: #a0a0a3;
+    --card-bg: #1a1a1d;
+    --card-border: #333333;
+    --accent-blue: #4a90e2;
+    --success-green: #10b981;
+    --error-red: #ef4444;
+    --gradient-primary: linear-gradient(135deg, var(--accent-blue) 0%, #8b5cf6 100%);
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+}
+
+/* --- Form Container --- */
+.addressForm-container {
+    padding-top: 10px;
+}
+
+/* --- Form Group --- */
+.addressForm-group {
+    margin-bottom: 1.5rem;
+}
+
+.addressForm-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.addressForm-group input,
+.addressForm-group select {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--card-border);
+    border-radius: var(--border-radius);
+    background: var(--primary-bg);
+    color: var(--primary-text);
+    font-size: 1rem;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+.addressForm-group input:focus,
+.addressForm-group select:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.addressForm-group input:disabled,
+.addressForm-group select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.addressForm-group select {
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a0a0a3' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 3rem;
+}
+
+/* --- Form Grid (for City/State) --- */
+.addressForm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* --- Detect Location Button --- */
+.addressForm-detectBtn {
+    width: 100%;
+    background: var(--success-green);
+    border: none;
+    color: white;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+    font-size: 1rem;
+}
+
+.addressForm-detectBtn:hover:not(:disabled) {
+    background: #0d8b5a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+.addressForm-detectBtn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.addressForm-detectIcon {
+    width: 20px;
+    height: 20px;
+}
+
+/* --- Loading Spinner --- */
+.addressForm-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: addressFormSpin 0.6s linear infinite;
+}
+
+@keyframes addressFormSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Error Message --- */
+.addressForm-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--error-red);
+    border-radius: var(--border-radius);
+    color: var(--error-red);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* --- Form Buttons --- */
+.addressForm-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: flex-end;
+}
+
+.addressForm-btn {
+    flex: 1;
+    padding: 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.addressForm-btnPrimary {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+.addressForm-btnPrimary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
+}
+
+.addressForm-btnSecondary {
+    background: var(--card-border);
+    color: var(--secondary-text);
+}
+
+.addressForm-btnSecondary:hover:not(:disabled) {
+    background: var(--card-bg);
+    color: var(--primary-text);
+}
+
+.addressForm-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .addressForm-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .addressForm-buttons {
+        flex-direction: column;
+    }
+
+    .addressForm-btn {
+        width: 100%;
+    }
+
+    .addressForm-group input,
+    .addressForm-group select {
+        font-size: 0.95rem;
+        padding: 0.9rem;
+    }
+
+    .addressForm-detectBtn {
+        font-size: 0.95rem;
+        padding: 0.9rem;
+    }
+}

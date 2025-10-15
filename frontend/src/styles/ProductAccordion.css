@@ -1,0 +1,171 @@
+/* D:\stylescapes\frontend\src\styles\ProductAccordion.css */
+
+:root {
+    --primary-text: #f8f8f8;
+    --secondary-text: #a0a0a0;
+    --card-border: #333333;
+    --accent-blue: #4A90E2;
+    --light-blue-accent: #89CFF0;
+    --gold-accent: #DAA520;
+}
+
+/* --- Accordion Container --- */
+.accordion-section {
+    width: 100%;
+    margin: 0;
+    border-top: 1px solid var(--card-border);
+    padding-top: 1rem;
+}
+.accordion-separator {
+    border-bottom: 1px solid var(--card-border);
+    margin-top: 1rem;
+    height: 1px;
+}
+
+/* --- Individual Item (Minimalist Style) --- */
+.accordion-item {
+    border-bottom: 1px solid var(--card-border);
+    background-color: transparent;
+    margin: 0;
+    border-radius: 0; 
+    transition: all 0.3s ease;
+    overflow: hidden;
+    border-left: 1px solid transparent; 
+    border-right: 1px solid transparent; 
+}
+
+/* Subtle Luxury Hover Effect */
+.accordion-item:hover {
+    border-left: 1px solid var(--accent-blue);
+    border-right: 1px solid var(--accent-blue);
+    padding-left: 5px; 
+    padding-right: 5px; 
+    transform: translateY(-1px); 
+}
+.accordion-item.open {
+    border-left: 1px solid var(--accent-blue);
+    border-right: 1px solid var(--accent-blue);
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: rgba(74, 144, 226, 0.05);
+}
+
+/* --- Header --- */
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0; 
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.accordion-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-text);
+}
+
+.accordion-item.open .accordion-title {
+     color: var(--light-blue-accent);
+}
+
+.accordion-icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    color: var(--secondary-text);
+}
+.accordion-item.open .accordion-icon {
+    transform: rotate(45deg);
+    color: var(--accent-blue);
+}
+
+/* --- Content & Typography --- */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding: 0; 
+    color: var(--secondary-text);
+    line-height: 1.7;
+}
+.accordion-item.open .accordion-content {
+    padding-bottom: 1.5rem; 
+}
+
+.accordion-content p, 
+.accordion-content ul {
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.accordion-item.open .accordion-content p, 
+.accordion-item.open .accordion-content ul {
+    opacity: 1;
+    transform: translateY(0);
+}
+.accordion-content ul {
+    list-style-type: disc;
+    margin-left: 30px;
+}
+.accordion-content strong {
+    color: var(--primary-text);
+}
+
+
+/* --- Shipping Section Specifics (Trust Badges FIX) --- */
+.trust-badges {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--card-border);
+}
+
+/* CRITICAL FIX: The Box Design for Trust Badges */
+.trust-badge {
+    background: var(--card-bg); /* Dark background */
+    border: 2px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1rem 0.5rem; /* Vertical padding kept high */
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.trust-badge:hover {
+    border-color: var(--gold-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(218, 165, 32, 0.2);
+}
+.trust-badge-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--gold-accent); /* Make icons golden */
+}
+.trust-badge-text {
+    font-size: 0.85rem;
+    color: var(--secondary-text);
+    font-weight: 500;
+}
+
+/* Reviews Content Placeholder (ensure spacing is correct for integrated component) */
+
+
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .accordion-title {
+        font-size: 1.2rem;
+    }
+    .accordion-content p, 
+    .accordion-content ul {
+        font-size: 0.9rem;
+    }
+    .trust-badges {
+        grid-template-columns: 1fr; /* Stack vertically on small phones for readability */
+    }
+}

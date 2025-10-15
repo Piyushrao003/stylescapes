@@ -1,0 +1,76 @@
+/* Auth.css - Main container and wrapper styles */
+
+.auth-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #111827;
+    overflow: hidden;
+    z-index: 1500; /* Higher than header to prevent conflicts */
+    font-family: "Poppins", sans-serif; /* Ensure Poppins is used */
+}
+
+.auth-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.auth-form-box {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    min-height: auto;
+    background-color: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(10px);
+    border: 2px solid #4a5568;
+    border-radius: 15px;
+    color: #ffffff;
+    box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    padding: 2.5em;
+}
+
+/* Force Poppins font for all auth elements */
+.auth-container *,
+.auth-container *:before,
+.auth-container *:after {
+    font-family: "Poppins", sans-serif !important;
+}
+
+/* Prevent global styles from affecting auth links */
+.auth-container a {
+    text-decoration: none !important;
+    color: #b8860b !important;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.auth-container a:hover {
+    text-decoration: underline !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .auth-wrapper {
+        padding: 15px;
+    }
+    
+    .auth-form-box {
+        padding: 2em;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-form-box {
+        padding: 1.5em;
+        border-radius: 10px;
+    }
+}

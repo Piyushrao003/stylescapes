@@ -1,0 +1,241 @@
+/* search.css - Search Page Styles */
+
+/* --- Root Variables and Base Styles --- */
+:root {
+    --primary-bg: #000000;
+    --primary-text: #f8f8f8;
+    --secondary-text: #a0a0a0;
+    --card-bg: #1a1a1a;
+    --card-border: #333333;
+    --accent-blue: #4A90E2;
+    --light-blue-accent: #89CFF0;
+    --blue-gradient: linear-gradient(135deg, var(--accent-blue) 0%, var(--light-blue-accent) 100%);
+    --blue-shadow: 0 10px 20px rgba(74, 144, 226, 0.2);
+    --mobile-header-height: 70px; /* Aligned with global.css */
+}
+
+/* --- Page Structure --- */
+
+.search-page-wrapper {
+    min-height: 100vh;
+    padding-top: 0; /* Remove the padding */
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding:0 2rem 2rem 2rem;
+}
+
+/* --- Search Bar Section --- */
+.search-container {
+    background: var(--primary-bg);
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+    z-index: 100;
+    border-bottom: 1px solid var(--card-border);
+    position: relative; /* Scrolls with content on both mobile and desktop */
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem 3.5rem 1rem 1.5rem;
+    border: 2px solid var(--card-border);
+    border-radius: 50px;
+    background: var(--card-bg);
+    color: var(--primary-text);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.search-button {
+    position: absolute;
+    right: 8px;
+    background: var(--blue-gradient);
+    border: none;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4); /* Add glow effect */
+}
+
+.search-button:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.6); /* Stronger glow on hover */
+}
+
+.search-button:active {
+    transform: scale(0.95); /* Press effect */
+}
+
+.search-button svg {
+    fill: none; /* Make sure it's not filled */
+    width: 20px;
+    height: 20px;
+    stroke: white; /* White stroke for the icon */
+    stroke-width: 2.5; /* Slightly thicker for better visibility */
+}
+/* Search Insights */
+.search-insights {
+    text-align: center;
+    margin-top: 0.5rem;
+    min-height: 24px;
+}
+
+.search-results-count {
+    font-size: 0.95rem;
+    color: var(--secondary-text);
+}
+
+/* --- Filter Chips --- */
+.quick-filters, .category-chips {
+    margin: 1.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.filter-chip, .chip {
+    background: transparent;
+    border: 2px solid var(--card-border);
+    color: var(--secondary-text);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.filter-chip:hover, .chip:hover,
+.filter-chip.active, .chip.active {
+    border-color: var(--accent-blue);
+    background: rgba(74, 144, 226, 0.1);
+    color: var(--primary-text);
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.3);
+    transform: translateY(-1px);
+}
+
+/* --- Loading State --- */
+.loading-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.skeleton-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    border-radius: 25px;
+    overflow: hidden;
+    height: 450px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-image {
+    width: 100%;
+    height: 60%;
+    background: #2a2a2a;
+    animation: shimmer 1.5s infinite;
+}
+
+.skeleton-info {
+    padding: 1.5rem;
+    height: 40%;
+}
+
+.skeleton-line {
+    background: #2a2a2a;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.skeleton-line.title { height: 24px; width: 70%; }
+.skeleton-line.price { height: 20px; width: 40%; }
+.skeleton-line.rating { height: 16px; width: 50%; margin-top: 1.5rem; }
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* --- Results Grid (Uses ProductGrid from Collection) --- */
+/* Ensure the grid structure matches the collection grid */
+.collection-product-grid { 
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns on desktop */
+    gap: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+
+@media (max-width: 768px) {
+    
+    .container {
+        padding: 1rem;
+    }
+    .search-wrapper {
+        max-width: 100%;
+    }
+    .search-input {
+        font-size: 0.9rem;
+        padding: 0.875rem 3.25rem 0.875rem 1.25rem;
+    }
+    .collection-product-grid, .loading-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+        gap: 1rem;
+    }
+    .product-card, .skeleton-card {
+        height: 350px;
+    }
+    .filter-chip, .chip {
+        font-size: 0.85rem;
+        padding: 6px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0.75rem;
+    }
+    .collection-product-grid, .loading-grid {
+        grid-template-columns: repeat(2, 1fr); /* Keep 2 columns on small mobile */
+        gap: 0.75rem;
+    }
+    .product-card, .skeleton-card {
+        height: 300px;
+    }
+    .search-input {
+        font-size: 0.85rem;
+    }
+}

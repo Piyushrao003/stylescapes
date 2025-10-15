@@ -1,0 +1,479 @@
+/* ../../styles/OrderAnimation.css */
+
+/**
+ * Order Tracking Animation Styles
+ * Standalone CSS for truck tracking animation
+ */
+
+/* --- Animation Container --- */
+.track-animation-container {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+  border-radius: 12px;
+  border: 1px solid var(--card-border, #333333);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Road --- */
+.road {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(90deg, #333 0%, #555 50%, #333 100%);
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.road::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 40%,
+    #ffd700 40%,
+    #ffd700 60%,
+    transparent 60%
+  );
+  animation: roadMarking 2s linear infinite;
+}
+
+@keyframes roadMarking {
+  0% {
+    transform: translateY(-50%) translateX(0);
+  }
+  100% {
+    transform: translateY(-50%) translateX(40px);
+  }
+}
+
+/* --- Background Clouds --- */
+.clouds {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  pointer-events: none;
+}
+
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
+  opacity: 0.6;
+}
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 50px;
+}
+
+.cloud1 {
+  width: 40px;
+  height: 12px;
+  top: 5px;
+  left: 10%;
+  animation: cloudMove1 25s linear infinite;
+}
+
+.cloud1::before {
+  width: 20px;
+  height: 12px;
+  top: -5px;
+  left: 10px;
+}
+
+.cloud2 {
+  width: 35px;
+  height: 10px;
+  top: 15px;
+  left: 60%;
+  animation: cloudMove2 30s linear infinite;
+}
+
+.cloud2::before {
+  width: 18px;
+  height: 10px;
+  top: -4px;
+  left: 8px;
+}
+
+.cloud3 {
+  width: 30px;
+  height: 8px;
+  top: 8px;
+  left: 40%;
+  animation: cloudMove1 35s linear infinite;
+}
+
+@keyframes cloudMove1 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(800px);
+  }
+}
+
+@keyframes cloudMove2 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-800px);
+  }
+}
+
+/* --- Truck Container --- */
+.truck-container {
+  position: absolute;
+  bottom: 20px;
+  left: -120px;
+  width: 120px;
+  height: 70px;
+  transition: left 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 10;
+}
+
+.truck-container.moving {
+  animation: truckBounce 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes truckBounce {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-3px);
+  }
+}
+
+.truck-svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+/* --- Exhaust Smoke --- */
+.exhaust-smoke {
+  position: absolute;
+  top: 8px;
+  right: 85px;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  display: none;
+}
+
+.smoke-particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: rgba(200, 200, 200, 0.6);
+  border-radius: 50%;
+  animation: smokeRise 2s ease-out infinite;
+  opacity: 0;
+}
+
+.smoke-particle:nth-child(1) {
+  animation-delay: 0s;
+  left: 0px;
+}
+.smoke-particle:nth-child(2) {
+  animation-delay: 0.4s;
+  left: 3px;
+}
+.smoke-particle:nth-child(3) {
+  animation-delay: 0.8s;
+  left: 6px;
+}
+
+@keyframes smokeRise {
+  0% {
+    opacity: 0.9;
+    transform: translateY(0) scale(0.4);
+    background: rgba(220, 220, 220, 0.9);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-25px) scale(1.2);
+    background: rgba(200, 200, 200, 0.4);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px) scale(1.8);
+    background: rgba(180, 180, 180, 0.1);
+  }
+}
+
+/* --- Dust Trail --- */
+.dust-trail {
+  position: absolute;
+  bottom: 8px;
+  right: 15px;
+  width: 40px;
+  height: 15px;
+  pointer-events: none;
+  display: none;
+}
+
+.dust-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(139, 69, 19, 0.4);
+  border-radius: 50%;
+  animation: dustTrail 1.2s ease-out infinite;
+  opacity: 0;
+}
+
+.dust-particle:nth-child(1) {
+  animation-delay: 0s;
+  bottom: 0;
+}
+.dust-particle:nth-child(2) {
+  animation-delay: 0.2s;
+  bottom: 3px;
+}
+.dust-particle:nth-child(3) {
+  animation-delay: 0.4s;
+  bottom: 6px;
+}
+.dust-particle:nth-child(4) {
+  animation-delay: 0.6s;
+  bottom: 2px;
+}
+
+@keyframes dustTrail {
+  0% {
+    opacity: 0.8;
+    transform: translateX(0) translateY(0) scale(0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-60px) translateY(-15px) scale(1.5);
+  }
+}
+
+/* --- Speed Lines --- */
+.speed-lines {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  display: none;
+}
+
+.speed-line {
+  position: absolute;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(74, 144, 226, 0.7),
+    transparent
+  );
+  animation: speedLineMove 1s linear infinite;
+  opacity: 0;
+}
+
+.speed-line:nth-child(1) {
+  top: -15px;
+  animation-delay: 0s;
+  width: 80px;
+}
+.speed-line:nth-child(2) {
+  top: 0px;
+  animation-delay: 0.2s;
+  width: 100px;
+}
+.speed-line:nth-child(3) {
+  top: 15px;
+  animation-delay: 0.4s;
+  width: 60px;
+}
+.speed-line:nth-child(4) {
+  top: -8px;
+  animation-delay: 0.6s;
+  width: 70px;
+}
+
+@keyframes speedLineMove {
+  0% {
+    left: -120px;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* --- Progress Dots --- */
+.progress-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 5;
+}
+
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--card-border, #333333);
+  border: 2px solid rgba(74, 144, 226, 0.2);
+  transition: all 0.4s ease;
+}
+
+.progress-dot.active {
+  background: var(--accent-blue, #4a90e2);
+  border-color: var(--accent-blue, #4a90e2);
+  box-shadow: 0 0 15px var(--accent-blue, #4a90e2),
+    0 0 30px rgba(74, 144, 226, 0.5);
+  animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+.progress-dot.completed {
+  background: var(--status-delivered, #2ecc71);
+  border-color: var(--status-delivered, #2ecc71);
+  box-shadow: 0 0 10px var(--status-delivered, #2ecc71);
+}
+
+@keyframes dotPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.8;
+  }
+}
+
+/* --- Truck Position Classes --- */
+.truck-container.placed {
+  left: 5%;
+}
+.truck-container.packed {
+  left: 20%;
+}
+.truck-container.shipped {
+  left: 45%;
+}
+.truck-container.out-for-delivery {
+  left: 70%;
+}
+.truck-container.delivered {
+  left: calc(90% - 120px);
+}
+
+/* --- Delivered Celebration --- */
+.truck-container.delivered-celebration {
+  filter: drop-shadow(0 0 25px rgba(74, 144, 226, 0.8)) !important;
+  animation: deliveredBounce 0.6s ease-in-out 3 !important;
+}
+
+@keyframes deliveredBounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    transform: translateY(-10px) scale(1.05);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.03);
+  }
+  75% {
+    transform: translateY(-2px) scale(1.01);
+  }
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .track-animation-container {
+    height: 120px;
+  }
+
+  .truck-container {
+    width: 100px;
+    left: -100px;
+  }
+
+  .truck-container.placed {
+    left: 3%;
+  }
+  .truck-container.packed {
+    left: 18%;
+  }
+  .truck-container.shipped {
+    left: 42%;
+  }
+  .truck-container.out-for-delivery {
+    left: 68%;
+  }
+  .truck-container.delivered {
+    left: calc(92% - 100px);
+  }
+
+  .progress-dots {
+    gap: 8px;
+  }
+
+  .progress-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .road {
+    bottom: 15px;
+    height: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .track-animation-container {
+    height: 100px;
+  }
+
+  .truck-container {
+    width: 80px;
+  }
+
+  .progress-dots {
+    gap: 6px;
+  }
+
+  .progress-dot {
+    width: 6px;
+    height: 6px;
+  }
+}

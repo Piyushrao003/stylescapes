@@ -1,0 +1,199 @@
+/* frontend/src/styles/ProfileDetails.css */
+
+/* --- Root Variables --- */
+:root {
+    --primary-bg: #000000;
+    --secondary-bg: #111113;
+    --primary-text: #ffffff;
+    --secondary-text: #a0a0a3;
+    --card-bg-light: #222225;
+    --card-border: #333333;
+    --accent-blue: #4A90E2;
+    --accent-purple: #8b5cf6;
+    --gradient-primary: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+    --transition: all 0.3s ease;
+    --border-radius: 12px;
+    --white-field-bg: #ffffff;
+    --black-field-text: #111113;
+    --mobile-padding: 1.5rem;
+}
+
+/* --- Account Content Wrapper --- */
+.profileDetails-content {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--card-bg-light);
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius);
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Section Title --- */
+.profileDetails-sectionTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
+}
+
+/* --- Profile Card (Main Content Box) --- */
+.profileDetails-card {
+    background: var(--secondary-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    position: relative;
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
+}
+
+.profileDetails-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+/* --- Description Text --- */
+.profileDetails-description {
+    color: var(--secondary-text);
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+/* --- Profile Field Styling --- */
+.profileDetails-field {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.profileDetails-field:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.profileDetails-label {
+    font-size: 0.85rem;
+    color: var(--secondary-text);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+}
+
+/* --- Field Value Container (Flex to hold input and button) --- */
+.profileDetails-valueContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* --- White Input Field Styling --- */
+.profileDetails-editableField {
+    flex-grow: 1;
+    padding: 1rem;
+    padding-right: 50px; /* Space for button */
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius);
+    background: var(--white-field-bg);
+    color: var(--black-field-text);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+    width: 100%;
+    cursor: pointer;
+}
+
+.profileDetails-editableField:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
+    background: #ffffff;
+    cursor: text;
+}
+
+.profileDetails-editableField[readonly] {
+    cursor: pointer;
+}
+
+/* --- Edit/Save Icon Button --- */
+.profileDetails-iconBtn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: var(--transition);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileDetails-iconBtn svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+    stroke: var(--black-field-text);
+    transition: stroke 0.3s ease;
+}
+
+.profileDetails-iconBtn:hover {
+    background: rgba(74, 144, 226, 0.1);
+}
+
+.profileDetails-iconBtn:hover svg {
+    stroke: var(--accent-blue);
+}
+
+/* Active (Save mode) state */
+.profileDetails-iconBtn.active svg {
+    stroke: #10b981; /* Green for checkmark */
+}
+
+/* ========================================================== */
+/* --- MOBILE DESIGN (max-width: 768px) --- */
+/* ========================================================== */
+@media (max-width: 768px) {
+    .profileDetails-content {
+        padding: var(--mobile-padding);
+    }
+
+    .profileDetails-sectionTitle {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .profileDetails-card {
+        padding: 1.5rem;
+    }
+
+    .profileDetails-field {
+        margin-bottom: 1.5rem;
+    }
+
+    .profileDetails-editableField {
+        font-size: 0.95rem;
+        padding: 0.9rem;
+        padding-right: 50px;
+    }
+
+    .profileDetails-iconBtn {
+        right: 0;
+        padding: 12px;
+    }
+}
