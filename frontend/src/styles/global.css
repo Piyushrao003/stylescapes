@@ -2319,7 +2319,7 @@ body.no-scroll {
 /* Main content area - default (public routes) */
 .main-content {
   flex: 1;
-  padding-top: 90px; /* Space for fixed public header */
+  padding-top: 0; /* Space for fixed public header */
   padding-bottom: 0;
 }
 

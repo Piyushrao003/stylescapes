@@ -11,9 +11,22 @@ const User = {
     phone_number: String,
     
     // Security and roles
-    password: String, // Hashed password (managed by Firebase Auth in current flow)
     role: String, // e.g., 'user', 'admin'
-
+    status: String, // 'Active' | 'Blocked' etc.
+    
+    status_details: {
+        is_blocked: Boolean,
+        block_reason: String,
+        block_expiry: String, // ISO date string for temporary blocks
+    },
+    
+    // --- CRITICAL NEW ACTIVITY & METRIC FIELDS ---
+    is_online: Boolean,             // Real-time status (True/False)
+    last_login_at: String,          // ISO timestamp of last successful login
+    total_online_seconds: Number,   // Cumulative metric for engagement tracking
+    session_start_time: String,     // Temporary field to calculate time delta when user logs off
+    // --- END NEW FIELDS ---
+    
     // --- CRITICAL UPDATE: Multi-Address Array ---
     addresses: [{
         // Unique ID for internal reference (e.g., addr-001, addr-002)
@@ -35,28 +48,17 @@ const User = {
     created_at: String,
     updated_at: String,
 
-    // References to subcollections
-    // cart_items: [], // REMOVED/Obsolete
-    // wishlist_id: String, // REMOVED (Replaced by wishlist array below)
-    
-    // --- UPDATED/NEW FIELDS ---
-    
-    // Directly store wishlist IDs
-    wishlist: [String], // Array of product_ids (already in use)
-
-    // Hybrid Cart Storage: Only stores critical user choices/quantities
+    // Hybrid Cart Storage
     cart_items: [ 
         {
-            // Unique Identifier for the specific cart line item.
             id: String, 
-            product_id: String, // CRITICAL: Link to the Products collection
+            product_id: String, 
             selected_color: String, 
             selected_size: String,
             quantity: Number,
-            added_at: String, // Timestamp for potential cleanup/tracking
+            added_at: String,
         }
     ],
-    // NOTE: The old singular 'address' map has been removed from this schema.
 };
 
 module.exports = User;

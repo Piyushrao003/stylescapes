@@ -40,7 +40,6 @@ exports.findUserById = async (uid) => {
 
 /**
  * @description Updates core user profile fields (name/phone) in Firestore.
- * NOTE: Converts incoming camelCase keys (firstName, phoneNumber) to snake_case for DB storage.
  */
 exports.updateUserProfile = async (uid, updateData) => {
     try {
@@ -142,6 +141,129 @@ exports.checkUserVerifiedPurchase = async (userId, productId) => {
         console.error("Service Error checking verified purchase:", error);
         return false;
     }
+};
+
+
+// ----------------------------------------------------
+// NEW: ADMIN USER MANAGEMENT FUNCTIONS
+// ----------------------------------------------------
+
+/**
+ * @description Retrieves ALL user documents from Firestore (Admin only).
+ */
+exports.getAllUsers = async () => {
+    try {
+        const userSnapshot = await db.collection('users')
+            .orderBy('created_at', 'desc')
+            .get(); 
+
+        const usersData = userSnapshot.docs.map(doc => ({ 
+            id: doc.id, 
+            ...doc.data() 
+        }));
+        
+        return usersData;
+    } catch (error) {
+        console.error("Service Error in getAllUsers:", error);
+        throw new Error('Failed to retrieve all users from database.');
+    }
+};
+
+/**
+ * @description Updates a user's status (block/unblock) and related status details.
+ */
+exports.updateUserStatus = async (userId, newStatus, durationDays) => {
+    const userRef = db.collection('users').doc(userId);
+    const now = new Date().toISOString();
+    let updatePayload = { updated_at: now, status: newStatus };
+    
+    try {
+        if (newStatus === 'Active') {
+            // Unblock: Clear all blocking details
+            updatePayload.status_details = {
+                is_blocked: false,
+                block_reason: null,
+                block_expiry: null,
+            };
+        } else if (newStatus === 'Permanently Blocked' || newStatus === 'Temporarily Blocked') {
+            // Block: Calculate expiry date if temporary
+            let expiryDate = null;
+            if (newStatus === 'Temporarily Blocked' && durationDays) {
+                const expiry = new Date();
+                expiry.setDate(expiry.getDate() + durationDays);
+                expiryDate = expiry.toISOString();
+            }
+            
+            updatePayload.status_details = {
+                is_blocked: true,
+                block_reason: newStatus,
+                block_expiry: expiryDate,
+            };
+        }
+        
+        // Ensure that we don't accidentally override the role or other core fields
+        await userRef.update(updatePayload);
+
+        // Fetch and return the updated document
+        const updatedSnap = await userRef.get();
+        return { id: updatedSnap.id, ...updatedSnap.data() };
+        
+    } catch (error) {
+        console.error(`Error updating user status for ${userId}:`, error);
+        throw new Error('Failed to update user status in database.');
+    }
+};
+
+/**
+ * @description Handles setting online/offline status and accumulates total online time.
+ */
+exports.updateUserOnlineStatus = async (uid, isOnline) => {
+    const userRef = db.collection('users').doc(uid);
+    const now = new Date();
+    const nowISO = now.toISOString();
+    
+    return await db.runTransaction(async (t) => {
+        const userSnap = await t.get(userRef);
+        if (!userSnap.exists) {
+            throw new Error('User not found.');
+        }
+        
+        const userData = userSnap.data();
+        let updateData = { updated_at: nowISO, is_online: isOnline };
+        
+        if (isOnline) {
+            // SCENARIO 1: User goes Online/App starts - Start Timer
+            updateData.session_start_time = nowISO;
+            
+        } else {
+            // SCENARIO 2: User goes Offline/App closes - Calculate Time & Accumulate
+            const sessionStartTime = userData.session_start_time;
+            
+            if (sessionStartTime) {
+                const startTime = new Date(sessionStartTime);
+                const durationMs = now.getTime() - startTime.getTime();
+                
+                // Cap duration to prevent malicious or accidental extreme values (e.g., max 8 hours for one session)
+                const maxDurationSeconds = 8 * 60 * 60; 
+                
+                // Accumulate time in SECONDS
+                let durationSeconds = Math.round(durationMs / 1000);
+                
+                // Enforce cap
+                if (durationSeconds > maxDurationSeconds) {
+                    durationSeconds = maxDurationSeconds; 
+                }
+
+                // Update total_online_seconds atomically and clear session start time
+                updateData.total_online_seconds = FieldValue.increment(durationSeconds);
+            }
+            
+            updateData.session_start_time = null; // Clear the temporary field
+        }
+        
+        t.update(userRef, updateData);
+        return updateData;
+    });
 };
 
 
@@ -398,7 +520,7 @@ exports.removeCartItemFromDb = async (uid, itemId) => {
         const updatedCart = currentCart.filter(item => item.id !== itemId);
         
         if (updatedCart.length === initialLength) {
-             console.warn(`Attempted to remove item ${itemId}, but no match found in cart.`);
+             console.warn(`Attempted to remove item ${itemId} from cart.`);
         }
 
         t.update(userRef, { cart_items: updatedCart, updated_at: new Date().toISOString() });

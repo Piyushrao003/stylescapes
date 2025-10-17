@@ -124,8 +124,12 @@ exports.createProduct = async (productData, initialStockVariants) => {
     const productId = docRef.id;
     
     try {
+        console.log(`CHECKPOINT 3C: Bullshit product created in main collection. ID: ${productId}. Saving inventory.`); // CHECKPOINT 3C
+        
         // 3. Save the initial stock data using the new product ID
         await inventoryService.saveInitialStock(productId, initialStockVariants);
+
+        console.log(`CHECKPOINT 3D: Bullshit inventory saved. Creation successful.`); // CHECKPOINT 3D
 
         return { id: productId, ...productToSave };
 
@@ -149,6 +153,8 @@ exports.createProduct = async (productData, initialStockVariants) => {
  */
 exports.getAllProducts = async () => {
     try {
+        console.log("CHECKPOINT 3A: Bullshit request entered productService.getAllProducts. Fetching product documents."); // CHECKPOINT 3A
+
         const productSnapshot = await db.collection('products').get(); 
         const products = [];
         const stockPromises = [];
@@ -162,6 +168,8 @@ exports.getAllProducts = async () => {
         
         // Wait for all stock info to be attached
         const productsWithStock = await Promise.all(stockPromises);
+        
+        console.log(`CHECKPOINT 3B: Bullshit successfully attached inventory to ${productsWithStock.length} products. Returning data.`); // CHECKPOINT 3B
 
         return productsWithStock;
 

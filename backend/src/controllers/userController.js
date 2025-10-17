@@ -152,6 +152,78 @@ exports.deleteAddress = async (req, res) => {
     }
 };
 
+// ----------------------------------------------------
+// NEW: ADMIN USER MANAGEMENT FUNCTIONS
+// ----------------------------------------------------
+
+/**
+ * @description GET /api/user/users - Admin route to fetch all user profiles.
+ */
+exports.getAllUsers = async (req, res) => {
+    try {
+        const users = await userService.getAllUsers();
+        
+        res.status(200).json({ 
+            message: 'Users fetched successfully',
+            count: users.length,
+            users: users 
+        });
+    } catch (error) {
+        console.error("Controller Error in getAllUsers:", error);
+        res.status(500).json({ message: 'Internal Server Error fetching users.' });
+    }
+};
+
+/**
+ * @description PUT /api/user/users/:userId/status - Admin route to update block/active status.
+ */
+exports.updateUserStatus = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const { status: newStatus, durationDays } = req.body;
+
+        if (!newStatus) {
+            return res.status(400).json({ message: 'Status is required.' });
+        }
+        
+        const updatedUser = await userService.updateUserStatus(userId, newStatus, durationDays);
+        
+        res.status(200).json({ 
+            message: `User ${userId} status updated to ${newStatus}.`,
+            user: updatedUser 
+        });
+
+    } catch (error) {
+        console.error("Controller Error in updateUserStatus:", error);
+        res.status(500).json({ message: error.message || 'Internal Server Error updating user status.' });
+    }
+};
+
+/**
+ * @description PUT /api/user/status/online - Protected route to update online status.
+ */
+exports.updateUserOnlineStatus = async (req, res) => {
+    try {
+        const { uid } = req.user;
+        const { isOnline } = req.body; // Expects true or false
+
+        if (typeof isOnline !== 'boolean') {
+             return res.status(400).json({ message: 'isOnline status is required and must be a boolean.' });
+        }
+        
+        // This service call handles setting is_online, session_start_time, and accumulating time on disconnect
+        await userService.updateUserOnlineStatus(uid, isOnline);
+        
+        res.status(200).json({ 
+            message: `User status updated to ${isOnline ? 'Online' : 'Offline'}.`
+        });
+
+    } catch (error) {
+        console.error("Controller Error in updateUserOnlineStatus:", error);
+        res.status(500).json({ message: error.message || 'Internal Server Error updating online status.' });
+    }
+};
+
 
 // ----------------------------------------------------
 // EXISTING FUNCTIONS (Wishlist, Verification, Cart, Reporting)
