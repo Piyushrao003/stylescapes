@@ -2325,18 +2325,11 @@ body.no-scroll {
 
 /* Main content when on admin routes */
 .main-content.has-admin-header {
-  padding-top: 150px; /* 90px (public header) + 60px (admin header) */
+  padding-top: 0; /* 90px (public header) + 60px (admin header) */
   padding-bottom: 60px; /* Space for admin footer */
 }
 
-/* Admin Header Positioning - Stack below public header */
-.adh-header {
-  position: fixed;
-  top: 90px; /* Position directly below public header */
-  left: 0;
-  width: 100%;
-  z-index: 49; /* Below public header (z-index: 10100) */
-}
+
 
 /* ====================================================================== */
 /* --- RESPONSIVE ADJUSTMENTS --- */
@@ -2345,7 +2338,7 @@ body.no-scroll {
 /* Mobile - Adjust for smaller public header */
 @media (max-width: 768px) {
   .main-content {
-    padding-top: 70px; /* Smaller mobile header */
+    padding-top:0px; /* Smaller mobile header */
     padding-bottom: 60px; /* Mobile tab bar */
   }
 

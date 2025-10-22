@@ -1,136 +1,85 @@
+/* D:\stylescapes\frontend\src\styles\admin\ProductManagement.css (UPDATED FOR VARIANT VIEW) */
+
 :root {
-    /* --- Light Theme Colors (softer palette) --- */
-    --adp-light-bg: #f7f9fc;
-    --adp-light-card-bg: #ffffff;
-    --adp-light-text-color: #333d52;
-    --adp-light-secondary-text: #717d96;
-    --adp-light-border-color: #e3e6ed;
-    --adp-light-sidebar-link-hover: #f0f4f9;
-    --adp-light-accent-color: #4a90e2; 
-    --adp-light-accent-hover: #3d7ad6;
-    --adp-light-success-color: #28a745;
-    --adp-light-danger-color: #dc3545;
-
-    /* --- Dark Theme Colors (pitch black) --- */
-    --adp-dark-bg: #0a0a0a;
-    --adp-dark-card-bg: #111111;
-    --adp-dark-text-color: #ffffff;
-    --adp-dark-secondary-text: #cccccc;
-    --adp-dark-border-color: #333333;
-    --adp-dark-sidebar-link-hover: #1e1e1e;
-    --adp-dark-accent-color: #4a90e2; 
-    --adp-dark-accent-hover: #3d7ad6;
-    --adp-dark-success-color: #50fa7b;
-    --adp-dark-danger-color: #ff5555;
-
-    /* Default to Dark Theme */
-    --adp-main-bg: var(--adp-dark-bg);
-    --adp-card-bg: var(--adp-dark-card-bg);
-    --adp-text-color: var(--adp-dark-text-color);
-    --adp-secondary-text: var(--adp-dark-secondary-text);
-    --adp-border-color: var(--adp-dark-border-color);
-    --adp-sidebar-link-hover: var(--adp-dark-sidebar-link-hover);
-    --adp-header-bg: var(--adp-dark-header-bg);
-    --adp-footer-bg: var(--adp-dark-footer-bg);
-    --adp-accent-color: var(--adp-dark-accent-color);
-    --adp-accent-hover: var(--adp-dark-accent-hover);
-    --adp-success-color: var(--adp-dark-success-color);
-    --adp-danger-color: var(--adp-dark-danger-color);
+    --adp-primary-text: #ffffff;
+    --adp-secondary-text: #a0a0a3;
+    --adp-bg-color: #1a1a1d;
+    --adp-card-bg: #222225;
+    --adp-border-color: #333333;
+    --adp-accent-blue: #4a90e2;
+    --adp-success-green: #10b981;
+    --adp-error-red: #ef4444;
+    --adp-warning-orange: #f59e0b;
+    --adp-transition: all 0.3s ease;
+    --adp-border-radius: 8px;
 }
 
-body.light-theme {
-    --adp-main-bg: var(--adp-light-bg);
-    --adp-card-bg: var(--adp-light-card-bg);
-    --adp-text-color: var(--adp-light-text-color);
-    --adp-secondary-text: var(--adp-light-secondary-text);
-    --adp-border-color: var(--adp-light-border-color);
-    --adp-sidebar-link-hover: var(--adp-light-sidebar-link-hover);
-    --adp-header-bg: var(--adp-light-header-bg);
-    --adp-footer-bg: var(--adp-light-footer-bg);
-    --adp-accent-color: var(--adp-light-accent-color);
-    --adp-accent-hover: var(--adp-light-accent-hover);
-    --adp-success-color: var(--adp-light-success-color);
-    --adp-danger-color: var(--adp-light-danger-color);
-}
-
-/* General & Layout */
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-}
-
+/* --- Main Structure --- */
 .adp-main-wrapper {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--adp-main-bg);
-    color: var(--adp-text-color);
-    transition: background-color 0.4s ease, color 0.4s ease;
-    min-height: 100vh;
-    overflow-x: hidden;
-    padding: 20px;
-}
-
-.adp-main-content {
-    width: 100%;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .adp-products-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    gap: 10px;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--adp-border-color);
+    padding-bottom: 1rem;
+}
+
+.adp-products-header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--adp-primary-text);
 }
 
 .adp-header-actions {
     display: flex;
-    gap: 10px;
+    gap: 1rem;
 }
 
 .adp-add-product-btn,
 .adp-manage-category-btn {
-    background-color: var(--adp-accent-color);
-    color: white;
+    background: var(--adp-success-green);
+    color: #000;
     border: none;
-    padding: 10px 15px;
-    border-radius: 6px;
+    padding: 0.75rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 600;
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.2s ease;
-    display: flex; /* Added for icon alignment */
+    transition: var(--adp-transition);
+    display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
 }
-
 .adp-manage-category-btn {
-    background-color: var(--adp-secondary-text);
-}
-
-.adp-add-product-btn:hover {
-    background-color: var(--adp-accent-hover);
-}
-
-.adp-manage-category-btn:hover {
-    background-color: #555c6d;
-}
-
-/* Icon Styling for main buttons */
-.adp-add-product-btn svg,
-.adp-manage-category-btn svg {
-    width: 16px;
-    height: 16px;
-    stroke: white;
-}
-
-
-.adp-product-table-container {
-    overflow-x: auto;
+    background: var(--adp-card-bg);
+    color: var(--adp-secondary-text);
     border: 1px solid var(--adp-border-color);
-    border-radius: 10px;
-    background-color: var(--adp-card-bg);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+.adp-add-product-btn:hover { background: #0d8b5a; color: white; }
+.adp-manage-category-btn:hover { color: var(--adp-accent-blue); border-color: var(--adp-accent-blue); }
+
+.adp-notification-bar {
+    padding: 1rem;
+    background: rgba(74, 144, 226, 0.1);
+    border: 1px solid var(--adp-accent-blue);
+    color: var(--adp-accent-blue);
+    border-radius: var(--adp-border-radius);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+/* --- Product Table (Main Overview) --- */
+.adp-product-table-container {
+    background: var(--adp-card-bg);
+    border: 1px solid var(--adp-border-color);
+    border-radius: var(--adp-border-radius);
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .adp-product-table {
@@ -138,326 +87,253 @@ body.light-theme {
     border-collapse: collapse;
 }
 
-.adp-product-table thead th {
+.adp-product-table th,
+.adp-product-table td {
+    padding: 1rem;
     text-align: left;
-    padding: 12px 15px;
     border-bottom: 1px solid var(--adp-border-color);
-    font-size: 14px;
+    font-size: 0.95rem;
+}
+
+.adp-product-table th {
+    background: var(--adp-bg-color);
     color: var(--adp-secondary-text);
-    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
-.adp-product-table tbody tr {
-    border-bottom: 1px solid var(--adp-border-color);
-    transition: background-color 0.2s ease;
+/* --- Parent Row Styling --- */
+.adp-parent-row {
+    cursor: pointer;
+    transition: background 0.2s ease;
 }
 
-.adp-product-table tbody tr:hover {
-    background-color: var(--adp-sidebar-link-hover);
+.adp-parent-row:hover {
+    background: rgba(74, 144, 226, 0.1);
 }
 
-.adp-product-table tbody td {
-    padding: 12px 15px;
-    font-size: 14px;
-    color: var(--adp-text-color);
-    white-space: nowrap;
+.adp-expand-control button {
+    background: none;
+    border: 1px solid var(--adp-border-color);
+    color: var(--adp-primary-text);
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.adp-product-table .adp-product-image {
-    width: 50px;
-    height: 50px;
+.adp-product-image {
+    width: 40px;
+    height: 40px;
     object-fit: cover;
     border-radius: 4px;
-    border: 1px solid var(--adp-border-color);
 }
 
-.adp-product-table .adp-actions-cell .adp-action-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--adp-secondary-text);
-    font-size: 16px;
-    margin-right: 10px;
-    transition: color 0.2s ease;
-}
-
-/* Icon Styling for table action buttons */
-.adp-product-table .adp-actions-cell .adp-action-btn svg {
-    width: 16px;
-    height: 16px;
-    stroke: var(--adp-secondary-text);
-}
-.adp-product-table .adp-actions-cell .adp-action-btn:hover svg {
-    stroke: var(--adp-accent-color);
-}
-
-
-.adp-product-table .adp-stock-status {
-    display: inline-block;
-    padding: 4px 8px;
+/* --- Status Badges (Total Stock) --- */
+.adp-total-stock {
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
     border-radius: 4px;
-    font-size: 12px;
+}
+.adp-out-of-stock .adp-total-stock {
+    background: var(--adp-error-red);
+    color: white;
+}
+.adp-low-stock .adp-total-stock {
+    background: var(--adp-warning-orange);
+    color: #000;
+}
+.adp-in-stock .adp-total-stock {
+    background: var(--adp-success-green);
+    color: #000;
+}
+
+.adp-actions-cell {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.adp-action-btn {
+    background: var(--adp-bg-color);
+    border: 1px solid var(--adp-border-color);
+    color: var(--adp-secondary-text);
+    padding: 0.4rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.adp-edit-btn:hover { border-color: var(--adp-accent-blue); color: var(--adp-accent-blue); }
+.adp-delete-btn:hover { border-color: var(--adp-error-red); color: var(--adp-error-red); }
+
+
+/* --- Variant Detail Row (Child Row) --- */
+.adp-variant-detail-row td {
+    padding: 0;
+    background: var(--adp-bg-color);
+    border-bottom: 2px solid var(--adp-accent-blue);
+    animation: fadeInHeight 0.4s ease-out;
+}
+
+.adp-variant-list-container {
+    padding: 1rem 2rem;
+}
+.adp-variant-list-container h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--adp-accent-blue);
+    margin-bottom: 0.75rem;
+}
+.adp-variant-list-empty {
+    padding: 1rem;
+    color: var(--adp-secondary-text);
+}
+
+.adp-variant-sub-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.adp-variant-sub-table th,
+.adp-variant-sub-table td {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: var(--adp-secondary-text);
+}
+
+.adp-variant-sub-table th {
+    background: rgba(74, 144, 226, 0.1);
+    color: var(--adp-primary-text);
     font-weight: 500;
 }
 
-.adp-stock-status.adp-in-stock {
-    background-color: rgba(40, 167, 69, 0.1);
-    color: var(--adp-success-color);
+.adp-variant-row:last-child td {
+    border-bottom: none;
 }
 
-.adp-stock-status.adp-out-of-stock {
-    background-color: rgba(220, 53, 69, 0.1);
-    color: var(--adp-danger-color);
+/* Variant Row Statuses */
+.adp-variant-color-chip {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+    border: 1px solid var(--adp-border-color);
 }
 
+.adp-variant-alert {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-left: 1rem;
+}
+.adp-variant-row.out-of-stock {
+    background: rgba(239, 68, 68, 0.05);
+}
+.adp-variant-row.out-of-stock .adp-variant-alert {
+    background: var(--adp-error-red);
+    color: white;
+}
+.adp-variant-row.low-stock {
+    background: rgba(245, 158, 11, 0.1);
+}
+.adp-variant-row.low-stock .adp-variant-alert {
+    background: var(--adp-warning-orange);
+    color: #000;
+}
+
+/* --- Modal Styles (Delete Confirmation Only) --- */
+/* Kept the basic modal structure for delete confirmation */
 .adp-modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: none;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.adp-modal.adp-show {
-    display: flex;
-    opacity: 1;
+    z-index: 6000;
 }
 
 .adp-modal-content {
-    background-color: var(--adp-card-bg);
-    padding: 30px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 600px;
-    max-height: 90vh;
-    overflow-y: auto;
-    transform: scale(0.9);
-    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.4s ease;
+    background: var(--adp-card-bg);
+    padding: 2rem;
+    border-radius: var(--adp-border-radius);
+    width: 400px;
 }
 
-#adp-category-modal .adp-modal-content {
-    max-width: 400px;
-}
-
-.adp-modal.adp-show .adp-modal-content {
-    transform: scale(1);
-}
-
-.adp-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--adp-border-color);
-    padding-bottom: 15px;
-    margin-bottom: 20px;
-}
-
-.adp-modal-header h3 {
-    font-size: 20px;
-    color: var(--adp-text-color);
-}
-
-/* Modal Close Button (uses unicode X) */
-.adp-close-btn {
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: var(--adp-secondary-text);
-    cursor: pointer;
-}
-.adp-close-btn:hover {
-    color: var(--adp-danger-color);
-}
-
-
-.adp-modal-body .adp-form-group {
-    margin-bottom: 15px;
-}
-
-.adp-modal-body label {
-    display: block;
-    font-size: 14px;
-    color: var(--adp-secondary-text);
-    margin-bottom: 5px;
-}
-
-.adp-modal-body input,
-.adp-modal-body select,
-.adp-modal-body textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--adp-border-color);
-    border-radius: 6px;
-    background-color: var(--adp-main-bg);
-    color: var(--adp-text-color);
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.2s ease, background-color 0.4s ease;
-}
-
-.adp-modal-body input:focus,
-.adp-modal-body select:focus,
-.adp-modal-body textarea:focus {
-    border-color: var(--adp-accent-color);
+.adp-modal-content h3 {
+    color: var(--adp-error-red);
+    margin-bottom: 1rem;
 }
 
 .adp-modal-footer {
     display: flex;
     justify-content: flex-end;
-    margin-top: 20px;
-    gap: 10px;
+    gap: 1rem;
+    padding-top: 1rem;
 }
 
-.adp-modal-footer button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    display: flex; /* Added for icon alignment */
-    align-items: center;
-    gap: 8px;
-}
-
-.adp-modal-footer button svg {
-    width: 16px;
-    height: 16px;
-}
-
-.adp-modal-footer .adp-cancel-btn {
-    background-color: var(--adp-sidebar-link-hover);
-    color: var(--adp-text-color);
-}
-
-.adp-modal-footer .adp-cancel-btn svg { stroke: var(--adp-text-color); }
-
-.adp-modal-footer .adp-save-btn {
-    background-color: var(--adp-accent-color);
-    color: white;
-}
-.adp-modal-footer .adp-save-btn svg { stroke: white; }
-
-
-.adp-shipping-details-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-}
-
-.adp-shipping-zone-group {
-    border: 1px solid var(--adp-border-color);
-    padding: 15px;
-    border-radius: 8px;
-}
-
-.adp-shipping-zone-group label {
-    font-size: 12px;
+.adp-cancel-btn, .adp-delete-confirm-btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
     font-weight: 600;
-}
-
-.adp-shipping-zone-group input {
-    margin-top: 5px;
-}
-
-.adp-confirm-modal-content {
-    max-width: 400px;
-    text-align: center;
-}
-
-/* Category List Styles */
-.adp-category-list {
-    list-style: none;
-    padding: 0;
-    max-height: 150px;
-    overflow-y: auto;
-    border: 1px solid var(--adp-border-color);
-    border-radius: 6px;
-    margin-top: 10px;
-}
-.adp-category-list li {
-    padding: 8px 10px;
-    border-bottom: 1px solid var(--adp-border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.adp-category-list li:last-child {
-    border-bottom: none;
-}
-.adp-category-list .adp-remove-btn {
-    background: none;
-    border: none;
-    color: var(--adp-danger-color);
     cursor: pointer;
-    font-size: 14px;
-    transition: color 0.2s ease;
-}
-.adp-category-list .adp-remove-btn svg {
-    width: 14px;
-    height: 14px;
-    stroke: var(--adp-danger-color);
-}
-.adp-category-list .adp-remove-btn:hover {
-    color: var(--adp-danger-color);
-    transform: scale(1.1);
 }
 
-.adp-category-add-footer {
-    justify-content: flex-start; 
-    margin-top: 15px; 
-    padding-bottom: 0; 
-    border-top: none;
-}
-.adp-category-add-btn {
-    width: auto !important;
+.adp-cancel-btn {
+    background: var(--adp-border-color);
+    color: var(--adp-secondary-text);
+    border: none;
 }
 
-.adp-existing-categories-title {
-    margin-top: 20px; 
-    border-top: 1px solid var(--adp-border-color); 
-    padding-top: 20px;
+.adp-delete-confirm-btn {
+    background: var(--adp-error-red);
+    color: white;
+    border: none;
 }
 
-
+/* Responsive Table Breakpoint */
 @media (max-width: 768px) {
     .adp-main-wrapper {
-        padding: 15px;
+        padding: 1rem;
     }
-
+    
     .adp-products-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 15px;
+        gap: 1rem;
     }
-
+    
     .adp-header-actions {
         width: 100%;
         justify-content: space-between;
     }
 
-    .adp-product-table-container {
-        overflow-x: auto;
+    .adp-product-table th,
+    .adp-product-table td {
+        padding: 0.75rem;
     }
-
-    .adp-product-table {
-        width: 700px;
+    
+    .adp-product-table th:nth-child(2),
+    .adp-product-table td:nth-child(2),
+    .adp-product-table th:nth-child(4),
+    .adp-product-table td:nth-child(4) {
+        display: none; /* Hide Image and Category for narrow view */
     }
-
-    .adp-shipping-details-grid {
-        grid-template-columns: 1fr;
+    
+    .adp-product-table th:nth-child(3),
+    .adp-product-table td:nth-child(3) {
+        width: 40%; /* Make Name field larger */
     }
-}
-
-@media (max-width: 480px) {
-    .adp-shipping-details-grid {
-        grid-template-columns: 1fr;
+    
+    .adp-variant-sub-table th:nth-child(1),
+    .adp-variant-sub-table td:nth-child(1) {
+        display: none; /* Hide SKU in variant table on mobile */
     }
 }

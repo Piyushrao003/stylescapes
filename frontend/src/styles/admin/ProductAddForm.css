@@ -1,0 +1,364 @@
+/* frontend/src/styles/admin/ProductAddForm.css (FINAL DESIGN UPDATE) */
+
+:root {
+    --apf-primary-text: #ffffff;
+    --apf-secondary-text: #a0a0a3;
+    --apf-bg-color: #1a1a1d;
+    --apf-card-bg: #222225;
+    --apf-border-color: #333333;
+    --apf-accent-blue: #4a90e2;
+    --apf-success-green: #10b981;
+    --apf-error-red: #ef4444;
+    --apf-transition: all 0.2s ease;
+    --apf-border-radius: 8px;
+}
+
+/* --- Modal Structure --- */
+.apf-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 7000;
+}
+
+.apf-modal-content {
+    background: var(--apf-card-bg);
+    padding: 2.5rem;
+    border-radius: var(--apf-border-radius);
+    width: 95%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.apf-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--apf-border-color);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.apf-modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--apf-accent-blue);
+}
+
+.apf-close-btn {
+    background: none;
+    border: none;
+    color: var(--apf-secondary-text);
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: var(--apf-transition);
+}
+.apf-close-btn:hover { color: var(--apf-error-red); }
+
+/* --- Form General Styling --- */
+.apf-form-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.apf-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+.apf-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+.apf-full-width {
+    grid-column: 1 / -1;
+}
+
+.apf-form-group label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--apf-secondary-text);
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+}
+
+.apf-form-group input,
+.apf-form-group select,
+.apf-form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--apf-border-color);
+    border-radius: var(--apf-border-radius);
+    background: var(--apf-bg-color);
+    color: var(--apf-primary-text);
+    font-size: 0.9rem;
+    transition: var(--apf-transition);
+}
+
+.apf-form-group input:focus,
+.apf-form-group select:focus,
+.apf-form-group textarea:focus {
+    outline: none;
+    border-color: var(--apf-accent-blue);
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.apf-readonly input {
+    background: #333333;
+    color: var(--apf-success-green);
+    font-weight: 700;
+}
+.apf-full-width .apf-total-price input {
+    font-size: 1.2rem;
+    color: var(--apf-accent-blue);
+}
+
+.apf-error-message-box {
+    padding: 1rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--apf-error-red);
+    color: var(--apf-error-red);
+    border-radius: var(--apf-border-radius);
+    margin-bottom: 1.5rem;
+}
+
+/* --- Section Headings --- */
+.apf-section-heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--apf-success-green);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed var(--apf-border-color);
+}
+
+/* --- Variant Management (Section 2) --- */
+.apf-variation-container {
+    display: flex;
+    flex-direction: column; /* Forces vertical stacking by default */
+    gap: 1.5rem;
+}
+
+.apf-variation-group {
+    background: var(--apf-bg-color);
+    padding: 1rem;
+    border-radius: var(--apf-border-radius);
+    border: 1px solid var(--apf-border-color);
+}
+
+.apf-variation-input-group {
+    display: grid;
+    grid-template-columns: 2fr 0.5fr 1fr; /* Name | Color Picker | Button */
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.apf-variation-input-group input[type="color"] {
+    height: 40px;
+    padding: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+/* Grid fix for size input group (only 2 inputs + button) */
+.apf-variation-group:nth-child(2) .apf-variation-input-group {
+    grid-template-columns: 2.5fr 1fr; /* Name | Button */
+}
+
+.apf-btn-add-var {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.9rem;
+    background: var(--apf-accent-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    transition: var(--apf-transition);
+}
+
+/* Chip Display */
+.apf-chip-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    color: var(--apf-secondary-text);
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--apf-border-color);
+}
+.apf-chip-display p {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--apf-primary-text);
+}
+.apf-chip {
+    background: var(--apf-bg-color);
+    padding: 0.3rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid var(--apf-border-color);
+    color: var(--apf-secondary-text);
+}
+.apf-chip button {
+    background: none;
+    border: none;
+    color: var(--apf-error-red);
+    cursor: pointer;
+    padding: 0;
+    font-size: 0.8rem;
+}
+.apf-color-chip {
+    padding-left: 10px;
+}
+
+.apf-stock-input-container {
+    padding-top: 1rem;
+    border-top: 1px dashed var(--apf-border-color);
+}
+.apf-stock-input-container label {
+    font-size: 1rem;
+    color: var(--apf-primary-text);
+}
+
+/* --- Shipping Zones (Section 4) --- */
+.apf-shipping-zone-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.apf-zone-group {
+    background: var(--apf-bg-color);
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid var(--apf-border-color);
+}
+.apf-zone-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--apf-primary-text);
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.2rem;
+}
+.apf-zone-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+.apf-zone-inputs input {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+}
+
+/* --- Image Upload (Section 5) --- */
+.apf-btn-upload {
+    background: var(--apf-accent-blue);
+    color: white;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.apf-btn-small {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+}
+.apf-image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+/* --- Footer Buttons --- */
+.apf-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--apf-border-color);
+}
+
+.apf-btn-cancel,
+.apf-btn-submit {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--apf-transition);
+}
+.apf-btn-cancel {
+    background: var(--apf-border-color);
+    color: var(--apf-secondary-text);
+}
+.apf-btn-submit {
+    background: var(--apf-success-green);
+    color: #000;
+}
+
+/* --- Responsive & Mobile Usability Fixes --- */
+@media (max-width: 600px) {
+    .apf-modal-content {
+        padding: 1rem;
+    }
+    
+    /* Grid adjustments for mobile (Section 1 & 3) */
+    .apf-grid-2,
+    .apf-grid-3,
+    .apf-pricing-grid,
+    .apf-zone-inputs {
+        grid-template-columns: 1fr; /* Stack all elements vertically */
+        gap: 1rem;
+    }
+    
+    /* Variant Input Fix (Section 2) */
+    .apf-variation-input-group {
+        grid-template-columns: 1fr 40px 1fr; /* Name (1fr), Picker (40px), Button (1fr) */
+    }
+    /* Color Name takes priority and spans most of the width */
+    .apf-variation-input-group:nth-child(1) input[type="text"] {
+        grid-column: 1 / 3; 
+    }
+    /* Color picker button moves next to the name */
+    .apf-variation-input-group:nth-child(1) input[type="color"] {
+        grid-column: 1 / 2; 
+        height: 38px;
+    }
+    /* Color Add Button moves to the right */
+    .apf-variation-input-group:nth-child(1) .apf-btn-add-var {
+        grid-column: 3 / 4;
+    }
+    
+    /* Size Input Adjustments */
+    .apf-variation-group:nth-child(2) .apf-variation-input-group {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    /* Price Display Fixes */
+    .apf-full-width .apf-total-price {
+        padding-top: 1rem;
+    }
+    
+    /* Footer Buttons Stack */
+    .apf-modal-footer {
+        flex-direction: column;
+    }
+}
